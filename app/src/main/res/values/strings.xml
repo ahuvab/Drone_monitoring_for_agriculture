@@ -11,7 +11,7 @@
     <string name="error_login">Incorrect user-name or password.
                                Please try again </string>
     <string name="error_register">This email or password is incorrect </string>
-    <string name="can_not_register">sorry, the register did not succees. please try again later </string>
+    <string name="can_not_register">Sorry, the register did not succees. please try again later </string>
     <string name="min_user_name">User name should be minimum 5 characters </string>
     <string name="email_validate">The email is invalid</string>
     <string name="password_not_confirm">The password is not match</string>
