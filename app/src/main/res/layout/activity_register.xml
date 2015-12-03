@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.user.airscort_for_agriculture.RegisterActivity">
+
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:id="@+id/ImageLogo"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="-50dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:id="@+id/editFNameReg"
+        android:layout_below="@+id/ImageLogo"
+        android:layout_marginTop="-2dp"
+        android:hint="@string/f_name"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:background="@drawable/border_black"
+        android:layout_centerHorizontal="true"/>
+
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:id="@+id/editLNameReg"
+        android:layout_below="@+id/editFNameReg"
+        android:layout_marginTop="10dp"
+        android:hint="@string/l_name"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:background="@drawable/border_black"
+        android:layout_centerHorizontal="true"/>
+
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editEmailReg"
+        android:layout_below="@+id/editLNameReg"
+        android:layout_marginTop="10dp"
+        android:hint="@string/email"
+        android:textColor="#000000"
+        android:background="@drawable/border_black"
+        android:layout_centerHorizontal="true"/>
+
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:ems="7"
+        android:id="@+id/editPasswordReg"
+        android:layout_below="@+id/editEmailReg"
+        android:layout_marginTop="10dp"
+        android:hint="@string/password"
+        android:textColor="#000000"
+        android:background="@drawable/border_black"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:ems="7"
+        android:id="@+id/editConPasswordReg"
+        android:layout_below="@+id/editPasswordReg"
+        android:layout_marginTop="10dp"
+        android:hint="@string/confirm_password"
+        android:textColor="#000000"
+        android:background="@drawable/border_black"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/registerbutton"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
