@@ -7,26 +7,67 @@
         android:layout_height="200dp"
         android:id="@+id/ImageLogo"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-70dp"
         android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/buttonReg"
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:id="@+id/editEmailLog"
         android:layout_below="@+id/ImageLogo"
+        android:layout_marginTop="-60dp"
+        android:hint="@string/email"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:background="@drawable/border_black"/>
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:id="@+id/editPasswordLog"
+        android:inputType="textPassword"
+        android:ems="7"
+        android:layout_below="@+id/editEmailLog"
+        android:hint="@string/password"
+        android:layout_marginTop="15dp"
+
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/border_black"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log-in"
-        android:layout_below="@+id/buttonReg"
+        android:layout_below="@+id/editPasswordLog"
+        android:layout_marginTop="10dp"
         android:id="@+id/buttonLog"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Not a member yet?"
+        android:id="@+id/textViewNot"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/buttonLog"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="15dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Register"
+        android:id="@+id/textViewReg"
+        android:layout_alignTop="@+id/textViewNot"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/textViewNot"
+        android:textStyle="bold|italic" />
+
+
 </RelativeLayout>
 
 

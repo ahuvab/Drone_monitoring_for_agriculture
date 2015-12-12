@@ -46,14 +46,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if(email.equals("")){
             emailInput.setHint(getString(R.string.fill_field));
         }
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){    //check the email validate
+        else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){    //check the email validate
             emailInput.setText("");
             emailInput.setHint(getString(R.string.email_validate));
         }
         if(password.equals("")){
             passwordInput.setHint(getString(R.string.fill_field));
         }
-        if(password.length()<6){
+        else if(password.length()<6){
             passwordInput.setText("");
             passwordInput.setHint(getString(R.string.password_length));
         }
