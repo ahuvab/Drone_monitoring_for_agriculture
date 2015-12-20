@@ -36,36 +36,36 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         email=emailInput.getText().toString();
         password=passwordInput.getText().toString();
 
-//        if(firstName.equals("")){
-//            fNameInput.setHint(getString(R.string.fill_field));
-//        }
-//        if(lastName.equals("")){
-//            lNameInput.setHint(getString(R.string.fill_field));
-//        }
-//        if(email.equals("")){
-//            emailInput.setHint(getString(R.string.fill_field));
-//        }
-//        else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){    //check the email validate
-//            emailInput.setText("");
-//            emailInput.setHint(getString(R.string.email_validate));
-//        }
-//        if(password.equals("")){
-//            passwordInput.setHint(getString(R.string.fill_field));
-//        }
-//        else if(password.length()<6){
-//            passwordInput.setText("");
-//            passwordInput.setHint(getString(R.string.password_length));
-//        }
-//        if(conPassword.getText().toString().equals("")){
-//            conPassword.setHint(getString(R.string.fill_field));
-//        }
-//        if(!password.equals(conPassword.getText().toString())){
-//            conPassword.setText("");
-//            conPassword.setHint(getString(R.string.password_not_confirm));
-//        }
-//        else if(!firstName.equals("") && !lastName.equals("") &&
-//                android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() && !password.equals("") && password.length()>=6 &&
-//                 password.equals(conPassword.getText().toString())){
+        if(firstName.equals("")){
+            fNameInput.setHint(getString(R.string.fill_field));
+        }
+        if(lastName.equals("")){
+            lNameInput.setHint(getString(R.string.fill_field));
+        }
+        if(email.equals("")){
+            emailInput.setHint(getString(R.string.fill_field));
+        }
+        else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){    //check the email validate
+            emailInput.setText("");
+            emailInput.setHint(getString(R.string.email_validate));
+        }
+        if(password.equals("")){
+            passwordInput.setHint(getString(R.string.fill_field));
+        }
+        else if(password.length()<6){
+            passwordInput.setText("");
+            passwordInput.setHint(getString(R.string.password_length));
+        }
+        if(conPassword.getText().toString().equals("")){
+            conPassword.setHint(getString(R.string.fill_field));
+        }
+        if(!password.equals(conPassword.getText().toString())){
+            conPassword.setText("");
+            conPassword.setHint(getString(R.string.password_not_confirm));
+        }
+        else if(!firstName.equals("") && !lastName.equals("") &&
+                android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() && !password.equals("") && password.length()>=6 &&
+                 password.equals(conPassword.getText().toString())){
 
             if(dal.existEmail(email)){            //email or password already exist
                 Toast.makeText(this, getString(R.string.error_register), Toast.LENGTH_LONG).show();
@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Intent intent=new Intent(this, MapActivity.class);
                 startActivity(intent);
             }
-//        }
+        }
     }
 
 

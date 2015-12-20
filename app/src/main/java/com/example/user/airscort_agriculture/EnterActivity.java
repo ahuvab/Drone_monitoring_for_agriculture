@@ -15,8 +15,9 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
     private ImageView logo;
     private EditText enterEmail, enterPassword;
     private Button log;
-    private TextView notMember, register;
+    private TextView notMember, register, forgetPass;
     private DataAccess dal;
+    private String email, password;
 
 
 
@@ -30,7 +31,9 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
         log = (Button) findViewById(R.id.buttonLog);
         notMember=(TextView)findViewById(R.id.textViewNot);
         register=(TextView)findViewById(R.id.textViewReg);
+        forgetPass=(TextView)findViewById(R.id.forgetPass);
         register.setOnClickListener(this);
+        forgetPass.setOnClickListener(this);
         log.setOnClickListener(this);
         dal=new DataAccess(this);
     }
@@ -42,26 +45,33 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
         }
         if (log.getId() == v.getId()){
             //validate the fields
-            if(enterEmail.getText().toString().equals("")){
+            email=enterEmail.getText().toString();
+            password=enterPassword.getText().toString();
+            if(email.equals("")){
                 enterEmail.setHint(getString(R.string.fill_field));
             }
-            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(enterEmail.getText().toString()).matches()){
+            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 enterEmail.setText("");
                 enterEmail.setHint(getString(R.string.email_validate));
             }
-            if(enterPassword.getText().toString().equals("")){
+            if(password.equals("")){
                 enterPassword.setHint(getString(R.string.fill_field));
             }
-            else if(!enterEmail.getText().toString().equals("") && android.util.Patterns.EMAIL_ADDRESS.matcher(enterEmail.getText().toString()).matches()
-                && !enterPassword.getText().toString().equals("")){
+            else if(!email.equals("") && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                && !email.equals("")){
 
-                if(dal.existUser(enterEmail.getText().toString(),enterPassword.getText().toString())) {
-                    Toast.makeText(this, "go to field activity", Toast.LENGTH_LONG).show();
+                if(dal.existUser(email,password)) {
+                    Intent intent=new Intent(this, ChooseFieldsToScanActivity.class);
+                    intent.putExtra(getString(R.string.email), email);
+                    startActivity(intent);
                 }
                 else{     //the user is not exist or the details are incorrect
                     Toast.makeText(this, getText(R.string.error_login), Toast.LENGTH_LONG).show();
                 }
             }
+        }
+        if (forgetPass.getId() == v.getId()){
+
         }
     }
 }

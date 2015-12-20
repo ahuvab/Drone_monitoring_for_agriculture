@@ -21,4 +21,6 @@
         <item name="android:background">@drawable/tool_trash_button_bg</item>
     </style>
 
+
+
 </resources>
