@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="dark_green">#1B5E20</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
@@ -53,4 +54,5 @@
     <color name="medium_grey">#3C3C3C</color>
     <color name="grey700">#616161</color>
     <color name="black">#000000</color>
+    <color name="red">#D50000</color>
 </resources>

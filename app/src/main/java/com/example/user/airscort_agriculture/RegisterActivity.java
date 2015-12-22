@@ -1,6 +1,7 @@
 package com.example.user.airscort_agriculture;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,30 +38,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         password=passwordInput.getText().toString();
 
         if(firstName.equals("")){
-            fNameInput.setHint(getString(R.string.fill_field));
+            fNameInput.setHintTextColor(getResources().getColor(R.color.red));
+            fNameInput.setHint(getString(R.string.f_name));
         }
         if(lastName.equals("")){
-            lNameInput.setHint(getString(R.string.fill_field));
+            lNameInput.setHintTextColor(getResources().getColor(R.color.red));
+            lNameInput.setHint(getString(R.string.l_name));
         }
         if(email.equals("")){
-            emailInput.setHint(getString(R.string.fill_field));
+            emailInput.setHintTextColor(getResources().getColor(R.color.red));
+            emailInput.setHint(getString(R.string.email));
         }
         else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){    //check the email validate
             emailInput.setText("");
+            emailInput.setHintTextColor(getResources().getColor(R.color.red));
             emailInput.setHint(getString(R.string.email_validate));
         }
         if(password.equals("")){
-            passwordInput.setHint(getString(R.string.fill_field));
+            passwordInput.setHintTextColor(getResources().getColor(R.color.red));
+            passwordInput.setHint(getString(R.string.password));
         }
         else if(password.length()<6){
             passwordInput.setText("");
+            passwordInput.setHintTextColor(getResources().getColor(R.color.red));
             passwordInput.setHint(getString(R.string.password_length));
         }
         if(conPassword.getText().toString().equals("")){
-            conPassword.setHint(getString(R.string.fill_field));
+            conPassword.setHintTextColor(getResources().getColor(R.color.red));
+            conPassword.setHint(getString(R.string.confirm_password));
         }
         if(!password.equals(conPassword.getText().toString())){
             conPassword.setText("");
+            conPassword.setHintTextColor(getResources().getColor(R.color.red));
             conPassword.setHint(getString(R.string.password_not_confirm));
         }
         else if(!firstName.equals("") && !lastName.equals("") &&

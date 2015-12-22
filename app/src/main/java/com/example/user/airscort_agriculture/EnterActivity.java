@@ -1,6 +1,7 @@
 package com.example.user.airscort_agriculture;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -48,14 +49,17 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
             email=enterEmail.getText().toString();
             password=enterPassword.getText().toString();
             if(email.equals("")){
-                enterEmail.setHint(getString(R.string.fill_field));
+                enterEmail.setHintTextColor(getResources().getColor(R.color.red));
+                enterEmail.setHint(getString(R.string.email));
             }
             else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 enterEmail.setText("");
+                enterEmail.setHintTextColor(getResources().getColor(R.color.red));
                 enterEmail.setHint(getString(R.string.email_validate));
             }
             if(password.equals("")){
-                enterPassword.setHint(getString(R.string.fill_field));
+                enterPassword.setHintTextColor(getResources().getColor(R.color.red));
+                enterPassword.setHint(getString(R.string.password));
             }
             else if(!email.equals("") && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
                 && !email.equals("")){

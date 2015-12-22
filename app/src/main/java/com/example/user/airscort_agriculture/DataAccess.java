@@ -52,4 +52,18 @@ public class DataAccess {
         return "Yitzhak";
     }
 
+    public String getLastName(String email){
+        return "Tal";
+    }
+
+    public String getEmail(String email){
+        return "yitzhak@airscort.me";
+    }
+
+    public String getPassword(String email){
+        return "111111";
+    }
+    public String getPhone(String email){
+        return "054-9963024";
+    }
 }
