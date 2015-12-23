@@ -16,4 +16,5 @@
     <string name="email_validate">The email is invalid</string>
     <string name="password_not_confirm">The password is not match</string>
     <string name="password_length">The password should be at least 6 characters</string>
+    <string name="profile_update">Your profile has been successfully updated</string>
 </resources>

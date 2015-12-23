@@ -41,29 +41,26 @@ public class DataAccess {
     public ArrayList<String> getAllFields (String email){
         ArrayList<String> array=new ArrayList<>();
         array.add("corn");
-        array.add("sunflower");
+        array.add("cannabis");
         array.add("wheat 1");
         array.add("wheat 2");
-        array.add("watermelon");
+        array.add("sunflower");
 
         return array;
     }
-    public String getFirstName(String email){
+    public String getFirstName(){
         return "Yitzhak";
     }
 
-    public String getLastName(String email){
+    public String getLastName(){
         return "Tal";
     }
 
-    public String getEmail(String email){
+    public String getEmail(){
         return "yitzhak@airscort.me";
     }
 
-    public String getPassword(String email){
+    public String getPassword(){
         return "111111";
-    }
-    public String getPhone(String email){
-        return "054-9963024";
     }
 }

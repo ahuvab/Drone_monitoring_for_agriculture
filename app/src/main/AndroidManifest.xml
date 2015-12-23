@@ -45,8 +45,12 @@
             android:name=".ChooseFieldsToScanActivity"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
-        <activity android:name=".UserProfileActivity"
-            android:parentActivityName="com.example.user.airscort_agriculture.ChooseFieldsToScanActivity">
+        <activity
+            android:name=".UserProfileActivity"
+            android:parentActivityName=".ChooseFieldsToScanActivity" >
+        </activity>
+        <activity android:name=".EditProfileActivity"
+            android:parentActivityName=".UserProfileActivity">
         </activity>
     </application>
 

@@ -72,9 +72,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             conPassword.setHintTextColor(getResources().getColor(R.color.red));
             conPassword.setHint(getString(R.string.password_not_confirm));
         }
-        else if(!firstName.equals("") && !lastName.equals("") &&
-                android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() && !password.equals("") && password.length()>=6 &&
-                 password.equals(conPassword.getText().toString())){
+//        else if(!firstName.equals("") && !lastName.equals("") &&
+//                android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() && !password.equals("") && password.length()>=6 &&
+//                 password.equals(conPassword.getText().toString())){
 
             if(dal.existEmail(email)){            //email or password already exist
                 Toast.makeText(this, getString(R.string.error_register), Toast.LENGTH_LONG).show();
@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Intent intent=new Intent(this, MapActivity.class);
                 startActivity(intent);
             }
-        }
+//        }
     }
 
 
