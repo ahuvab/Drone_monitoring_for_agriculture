@@ -2,6 +2,7 @@ package com.example.user.airscort_agriculture;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
     private TextView notMember, register, forgetPass;
     private DataAccess dal;
     private String email, password;
+
 
 
 

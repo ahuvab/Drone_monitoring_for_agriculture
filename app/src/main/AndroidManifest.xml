@@ -49,8 +49,11 @@
             android:name=".UserProfileActivity"
             android:parentActivityName=".ChooseFieldsToScanActivity" >
         </activity>
-        <activity android:name=".EditProfileActivity"
-            android:parentActivityName=".UserProfileActivity">
+        <activity
+            android:name=".EditProfileActivity"
+            android:parentActivityName=".UserProfileActivity" >
+        </activity>
+        <activity android:name=".StartScanningActivity" >
         </activity>
     </application>
 

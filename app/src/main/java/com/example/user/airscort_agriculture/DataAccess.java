@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -62,5 +63,9 @@ public class DataAccess {
 
     public String getPassword(){
         return "111111";
+    }
+
+    public int getTimeToScan(String fieldsName){
+        return 125;
     }
 }

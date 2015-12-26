@@ -55,4 +55,6 @@
     <color name="grey700">#616161</color>
     <color name="black">#000000</color>
     <color name="red">#D50000</color>
+    <color name="popup">#BBDEFB</color>
+
 </resources>
