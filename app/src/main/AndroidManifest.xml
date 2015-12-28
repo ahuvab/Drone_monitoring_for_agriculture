@@ -30,7 +30,8 @@
 
         <activity
             android:name=".EnterActivity"
-            android:label="@string/title_activity_maps" >
+            android:label="@string/title_activity_maps">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,6 +55,9 @@
             android:parentActivityName=".UserProfileActivity" >
         </activity>
         <activity android:name=".StartScanningActivity" >
+        </activity>
+        <activity android:name=".ScanningHistoryActivity"
+            android:parentActivityName=".ChooseFieldsToScanActivity" >>
         </activity>
     </application>
 

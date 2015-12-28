@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryDark">@color/dark_green</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
 
     <style name="editorButton">
@@ -20,6 +21,8 @@
     <style name="editorButton.Trash">
         <item name="android:background">@drawable/tool_trash_button_bg</item>
     </style>
+
+
 
 
 

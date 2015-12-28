@@ -56,5 +56,6 @@
     <color name="black">#000000</color>
     <color name="red">#D50000</color>
     <color name="popup">#BBDEFB</color>
+    <color name="background">#f2ebe9</color>
 
 </resources>
