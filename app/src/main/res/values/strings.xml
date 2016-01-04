@@ -18,4 +18,5 @@
     <string name="password_length">The password should be at least 6 characters</string>
     <string name="profile_update">Your profile has been successfully updated</string>
     <string name="no_chose">No fields selected</string>
+    <string name="title_activity_current_mission">Map</string>
 </resources>
