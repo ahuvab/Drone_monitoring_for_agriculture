@@ -2,6 +2,7 @@ package com.example.user.airscort_agriculture;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,8 @@ public class CurrentMissionActivity extends FragmentActivity implements OnMapRea
                         public void onClick(DialogInterface dialog, int which) {
                             //stop scanning
                             finish();
+                            Intent intent=new Intent(CurrentMissionActivity.this, ChooseFieldsToScanActivity.class);
+                            startActivity(intent);
                         }
 
                     })

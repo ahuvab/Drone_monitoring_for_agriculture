@@ -9,4 +9,5 @@
     <item android:drawable="@drawable/drone1" android:duration="50" />
     <item android:drawable="@drawable/drone2" android:duration="50" />
     <item android:drawable="@drawable/drone3" android:duration="50" />
+
 </animation-list>
