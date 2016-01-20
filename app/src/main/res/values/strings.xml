@@ -19,4 +19,6 @@
     <string name="profile_update">Your profile has been successfully updated</string>
     <string name="no_chose">No fields selected</string>
     <string name="title_activity_current_mission">Map</string>
+    <string name="survey_option">Survey</string>
+    <string name="waypoint_optopn">Waypoint</string>
 </resources>

@@ -90,6 +90,10 @@ public class DataAccess {
 
     }
 
+    public int getNumberOfFields(){
+        return 5;
+    }
+
 //    public ArrayList<String> getHistoryFields(){
 //        ArrayList<String> array=new ArrayList<>();
 //        array.add("corn, cannabis, wheat1");

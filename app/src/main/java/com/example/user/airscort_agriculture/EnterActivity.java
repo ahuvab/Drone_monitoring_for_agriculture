@@ -63,8 +63,8 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
                 enterPassword.setHintTextColor(getResources().getColor(R.color.red));
                 enterPassword.setHint(getString(R.string.password));
             }
-//            else if(!email.equals("") && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-//                && !email.equals("")){
+            else if(!email.equals("") && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                && !email.equals("")){
 
                 if(dal.existUser(email,password)) {
                     Intent intent=new Intent(this, ChooseFieldsToScanActivity.class);
@@ -74,7 +74,7 @@ public class EnterActivity extends AppCompatActivity implements View.OnClickList
                 else{     //the user is not exist or the details are incorrect
                     Toast.makeText(this, getText(R.string.error_login), Toast.LENGTH_LONG).show();
                 }
-//            }
+            }
         }
         if (forgetPass.getId() == v.getId()){
 
