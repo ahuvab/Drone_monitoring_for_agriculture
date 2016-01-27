@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -26,6 +27,10 @@ public class DataAccess {
     }
 
     public void changePassword(String email, String lastPass,String newPass){
+
+    }
+
+    public void addField(String name, List<LatLong> path){
 
     }
 

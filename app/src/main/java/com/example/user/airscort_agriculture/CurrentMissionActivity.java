@@ -87,35 +87,35 @@ public class CurrentMissionActivity extends FragmentActivity implements View.OnC
 
     public void drawPolygons() {
 
-        PolygonOptions rectOptions = new PolygonOptions()
-                .add(new LatLng(32.576077, 35.261569),
-                        new LatLng(32.574825, 35.267523),
-                        new LatLng(32.572840, 35.266841),
-                        new LatLng(32.574093, 35.261014),
-                        new LatLng(32.576077, 35.261569));
-
-        map.draw(rectOptions);
-
-        rectOptions = new PolygonOptions()
-                .add(new LatLng(32.583623, 35.266114),
-                        new LatLng(32.583472, 35.270545),
-                        new LatLng(32.580863, 35.272182),
-                        new LatLng(32.579840, 35.274427),
-                        new LatLng(32.576977, 35.273881),
-                        new LatLng(32.578613, 35.266115),
-                        new LatLng(32.583623, 35.266114));
-        map.draw(rectOptions);
-
-        rectOptions = new PolygonOptions()
-                .add(new LatLng(32.584769, 35.257547),
-                        new LatLng(32.583798, 35.262099),
-                        new LatLng(32.583696, 35.263677),
-                        new LatLng(32.581137, 35.263799),
-                        new LatLng(32.582264, 35.258336),
-                        new LatLng(32.583133, 35.258094),
-                        new LatLng(32.583491, 35.257729),
-                        new LatLng(32.584769, 35.257547));
-        map.draw(rectOptions);
+//        PolygonOptions rectOptions = new PolygonOptions()
+//                .add(new LatLng(32.576077, 35.261569),
+//                        new LatLng(32.574825, 35.267523),
+//                        new LatLng(32.572840, 35.266841),
+//                        new LatLng(32.574093, 35.261014),
+//                        new LatLng(32.576077, 35.261569));
+//
+//        map.drawPolygon(rectOptions);
+//
+//        rectOptions = new PolygonOptions()
+//                .add(new LatLng(32.583623, 35.266114),
+//                        new LatLng(32.583472, 35.270545),
+//                        new LatLng(32.580863, 35.272182),
+//                        new LatLng(32.579840, 35.274427),
+//                        new LatLng(32.576977, 35.273881),
+//                        new LatLng(32.578613, 35.266115),
+//                        new LatLng(32.583623, 35.266114));
+//        map.drawPolygon(rectOptions);
+//
+//        rectOptions = new PolygonOptions()
+//                .add(new LatLng(32.584769, 35.257547),
+//                        new LatLng(32.583798, 35.262099),
+//                        new LatLng(32.583696, 35.263677),
+//                        new LatLng(32.581137, 35.263799),
+//                        new LatLng(32.582264, 35.258336),
+//                        new LatLng(32.583133, 35.258094),
+//                        new LatLng(32.583491, 35.257729),
+//                        new LatLng(32.584769, 35.257547));
+//        map.drawPolygon(rectOptions);
 
     }
 }
