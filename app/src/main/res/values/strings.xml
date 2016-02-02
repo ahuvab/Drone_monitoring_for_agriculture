@@ -25,5 +25,8 @@
     <string name="continu_draw">continu_draw</string>
     <string name="delete_option">Delete</string>
     <string name="save_option">Save</string>
+    <string name="not_defined_fields">Not defined fields</string>
+    <string name="field_too_big">the field is too big./n please split it to several parts</string>
+
 
 </resources>
