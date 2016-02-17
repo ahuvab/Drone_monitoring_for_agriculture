@@ -24,12 +24,13 @@ public class CurrentMissionActivity extends FragmentActivity implements View.OnC
     private MapFragment map;
     private FrameLayout frameLayout;
     private ImageButton stop;
+    private DataAccess dal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_mission);
-
+        dal=new DataAccess(this);
         stop = (ImageButton) findViewById(R.id.imageButton);
         stop.setOnClickListener(this);
 
@@ -51,7 +52,7 @@ public class CurrentMissionActivity extends FragmentActivity implements View.OnC
                         while (!map.getFinished()) {
                         }
                                                               //draw fields on map
-                        map.addDroneMarker(new LatLng(32.578613, 35.266115));      //draw drone on map
+                        map.addHomeMarker(dal.getHomePoint());      //draw drone on map
                     }
                 });
 

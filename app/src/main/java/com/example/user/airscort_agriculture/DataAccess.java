@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,6 +99,10 @@ public class DataAccess {
 
     public int getNumberOfFields(){
         return 5;
+    }
+
+    public LatLng getHomePoint(){
+        return new LatLng(32.574511, 35.264361);
     }
 
 //    public ArrayList<String> getHistoryFields(){
