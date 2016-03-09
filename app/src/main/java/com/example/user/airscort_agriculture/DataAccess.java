@@ -1,15 +1,11 @@
 package com.example.user.airscort_agriculture;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class DataAccess {
 
     }
 
-    public void addField(String name, List<LatLong> path){
+    public void addField(String name, List<OrderLatLong> path){
 
     }
 

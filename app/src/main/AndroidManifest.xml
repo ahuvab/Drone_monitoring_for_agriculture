@@ -21,7 +21,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".EnterActivity"
+            android:name=".Activities.EnterActivity"
             android:label="@string/title_activity_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,31 +29,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapActivity" >
+        <activity android:name=".Activities.MapActivity" >
         </activity>
-        <activity android:name=".RegisterActivity" >
+        <activity android:name=".Activities.RegisterActivity" >
         </activity>
         <activity
-            android:name=".ChooseFieldsToScanActivity"
+            android:name=".Activities.ChooseFieldsToScanActivity"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
-            android:name=".UserProfileActivity"
-            android:parentActivityName=".ChooseFieldsToScanActivity" >
+            android:name=".Activities.UserProfileActivity"
+            android:parentActivityName=".Activities.ChooseFieldsToScanActivity" >
         </activity>
         <activity
-            android:name=".EditProfileActivity"
-            android:parentActivityName=".UserProfileActivity" >
+            android:name=".Activities.EditProfileActivity"
+            android:parentActivityName=".Activities.UserProfileActivity" >
         </activity>
-        <activity android:name=".StartScanningActivity" >
+        <activity android:name=".Activities.StartScanningActivity" >
         </activity>
         <activity
-            android:name=".ScanningHistoryActivity"
-            android:parentActivityName=".ChooseFieldsToScanActivity" >
+            android:name=".Activities.ScanningHistoryActivity"
+            android:parentActivityName=".Activities.ChooseFieldsToScanActivity" >
 >
         </activity>
         <activity
-            android:name=".CurrentMissionActivity"
+            android:name=".Activities.CurrentMissionActivity"
             android:label="@string/title_activity_current_mission" >
         </activity>
 
