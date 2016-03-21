@@ -25,8 +25,11 @@
     <string name="continu_draw">continu_draw</string>
     <string name="delete_option">Delete</string>
     <string name="save_option">Save</string>
-    <string name="not_defined_fields">Not defined fields</string>
+    <string name="define_close_area">You have to define close area</string>
     <string name="field_too_big">the field is too big./n please split it to several parts</string>
-
-
+    <string name="chosen_fields">chosen fields</string>
+    <string name="show_all_fields">Show all fields</string>
+    <string name="edit_fields">Edit fields</string>
+    <string name="name_for_field">You have to enter name for the field</string>
+    <string name="not_defined_fields">not defined fields</string>
 </resources>

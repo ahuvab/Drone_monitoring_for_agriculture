@@ -28,7 +28,7 @@ public class DataAccess {
 
     }
 
-    public void addField(String name, List<OrderLatLong> path){
+    public void addField(String name, List<LatLng> path){
 
     }
 
@@ -111,4 +111,14 @@ public class DataAccess {
 //        array.add("corn, cannabis, wheat1, wheat2, sunflower ");
 //        return array;
 //    }
+
+    public ArrayList<LatLng> getPathField(String fieldName){
+        ArrayList<LatLng> path= new ArrayList<LatLng>();
+        //get path from server
+        return path;
+    }
+
+    public double getFieldDistance(){
+        return  0;
+    }
 }
