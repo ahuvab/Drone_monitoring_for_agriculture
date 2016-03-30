@@ -7,7 +7,7 @@
         android:layout_height="170dp"
         android:id="@+id/ImageLogo"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="-65dp"
+        android:layout_marginTop="-60dp"
         android:layout_centerHorizontal="true"/>
 
     <EditText
@@ -16,7 +16,7 @@
         android:ems="10"
         android:id="@+id/editFNameReg"
         android:layout_below="@+id/ImageLogo"
-        android:layout_marginTop="-55dp"
+        android:layout_marginTop="-65dp"
         android:hint="@string/f_name"
         android:inputType="text"
         android:textColor="#000000"
@@ -29,7 +29,7 @@
         android:layout_height="27dp"
         android:id="@+id/editLNameReg"
         android:layout_below="@+id/editFNameReg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:hint="@string/l_name"
         android:inputType="text"
         android:textColor="#000000"
@@ -44,7 +44,7 @@
         android:ems="10"
         android:id="@+id/editEmailReg"
         android:layout_below="@+id/editLNameReg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:hint="@string/email"
         android:textColor="#000000"
         android:background="@drawable/border_black"
@@ -58,7 +58,7 @@
         android:ems="7"
         android:id="@+id/editPasswordReg"
         android:layout_below="@+id/editEmailReg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:hint="@string/password"
         android:textColor="#000000"
         android:background="@drawable/border_black"
@@ -71,18 +71,29 @@
         android:ems="7"
         android:id="@+id/editConPasswordReg"
         android:layout_below="@+id/editPasswordReg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:hint="@string/confirm_password"
+        android:textColor="#000000"
+        android:background="@drawable/border_black"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="27dp"
+        android:id="@+id/stationId"
+        android:layout_below="@+id/editConPasswordReg"
+        android:layout_marginTop="7dp"
+        android:hint="@string/station_id"
         android:textColor="#000000"
         android:background="@drawable/border_black"
         android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:text="Register"
         android:id="@+id/registerbutton"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />

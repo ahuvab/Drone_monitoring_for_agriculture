@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">Airscort_agriculture</string>
-    <string name="title_activity_maps">Airscort For Agriculture</string>
+    <string name="app_name">Fields</string>
+    <string name="title_activity_maps">Fields</string>
     <string name="f_name">First Name</string>
     <string name="l_name">Last Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">confirm Password</string>
+    <string name="station_id">Station id</string>
 
     <string name="fill_field">Please fill the field</string>
     <string name="error_login">Incorrect user-name or password.
@@ -25,6 +26,9 @@
     <string name="continu_draw">continu_draw</string>
     <string name="delete_option">Delete</string>
     <string name="save_option">Save</string>
+    <string name="undo_option">Undo</string>
+    <string name="edit_option">Edit</string>
+    <string name="show_option">Show</string>
     <string name="define_close_area">You have to define close area</string>
     <string name="field_too_big">the field is too big./n please split it to several parts</string>
     <string name="chosen_fields">chosen fields</string>

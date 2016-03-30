@@ -22,7 +22,7 @@
         android:ems="10"
         android:id="@+id/editFNameReg"
         android:layout_below="@+id/ImageLogo"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="-45dp"
         android:hint="@string/f_name"
         android:inputType="text"
         android:textColor="#000000"
@@ -83,13 +83,24 @@
         android:background="@drawable/border_black"
         android:layout_centerHorizontal="true"/>
 
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:id="@+id/stationId"
+        android:layout_below="@+id/editConPasswordReg"
+        android:layout_marginTop="10dp"
+        android:hint="@string/station_id"
+        android:textColor="#000000"
+        android:background="@drawable/border_black"
+        android:layout_centerHorizontal="true"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/registerbutton"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
