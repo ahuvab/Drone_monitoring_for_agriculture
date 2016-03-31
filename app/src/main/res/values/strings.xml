@@ -32,8 +32,11 @@
     <string name="define_close_area">You have to define close area</string>
     <string name="field_too_big">the field is too big./n please split it to several parts</string>
     <string name="chosen_fields">chosen fields</string>
-    <string name="show_all_fields">Show all fields</string>
+    <string name="show_all_fields">Show fields</string>
     <string name="edit_fields">Edit fields</string>
     <string name="name_for_field">You have to enter name for the field</string>
     <string name="not_defined_fields">not defined fields</string>
+    <string name="field_name_has_exist">Field namehas exist. Please enter a unique name </string>
+    <string name="add_more_fields">Add fields </string>
+    <string name="go_to_scan">Move to scanning </string>
 </resources>

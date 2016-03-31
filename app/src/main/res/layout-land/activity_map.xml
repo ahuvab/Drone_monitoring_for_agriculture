@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="3dp">
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup_tools"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:background="@color/dark_green">
+
+        <com.example.user.airscort_agriculture.RadioButtonView
+            android:id="@+id/editor_tools_scan"
+            style="@style/editorButton"
+            android:button="@drawable/drone"
+            />
+
+        <com.example.user.airscort_agriculture.RadioButtonView
+            android:id="@+id/editor_tools_save"
+            style="@style/editorButton"
+            android:button="@drawable/ic_save2"
+            />
+
+        <com.example.user.airscort_agriculture.RadioButtonView
+            android:id="@+id/editor_tools_undo"
+            style="@style/editorButton"
+            android:button="@drawable/ic_undo"
+            />
+
+        <com.example.user.airscort_agriculture.RadioButtonView
+            android:id="@+id/editor_tools_trash"
+            style="@style/editorButton"
+            android:button="@drawable/ic_delete"
+            />
+
+        <com.example.user.airscort_agriculture.RadioButtonView
+            android:id="@+id/editor_tools_draw"
+            style="@style/editorButton"
+            android:button="@drawable/ic_draw"
+            />
+
+        <com.example.user.airscort_agriculture.RadioButtonView
+            android:id="@+id/editor_tools_more"
+            style="@style/editorButton"
+            android:button="@drawable/ic_menu"
+            />
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        android:textDirection="ltr"
+        android:id="@+id/drawOptions"
+        android:layout_gravity="left" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        android:textDirection="ltr"
+        android:id="@+id/moreOptions"
+        android:layout_gravity="left" />
+
+    <FrameLayout
+        android:id="@+id/mapFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+
+</LinearLayout>
