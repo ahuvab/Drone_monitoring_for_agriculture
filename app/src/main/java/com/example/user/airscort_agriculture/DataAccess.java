@@ -82,6 +82,12 @@ public class DataAccess {
         //TODO: delete from server
     }
 
+    //return current location of the drone
+    public LatLng getDroneLoation(){
+        //TODO:GET THE LOCATION FROM SERVER
+        return new LatLng(32.578481, 35.266195);
+    }
+
     public boolean FieldNameHasExist(String newName){
         return localDB.nameHasExist(newName);
     }

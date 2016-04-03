@@ -42,6 +42,8 @@ public class ListHistoryAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
+        String temp="";
+        int index1=0;
         if (convertView == null) {
             LayoutInflater vi = (LayoutInflater) con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = vi.inflate(R.layout.single_listview_history, parent, false);
@@ -50,15 +52,17 @@ public class ListHistoryAdapter extends ArrayAdapter<String> {
             holder.tv1 = (TextView) convertView.findViewById(R.id.date);
             holder.tv2 = (TextView) convertView.findViewById(R.id.fields);
 
-            int index1 = array.get(position).indexOf(":");
-            String temp= array.get(position);
-            holder.tv1.setText(temp.substring(0, index1));
-            holder.tv2.setText(temp.substring(index1+1, temp.length()));
+            index1 = array.get(position).indexOf(":");
+            temp= array.get(position);
+
 
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.tv1.setText(temp.substring(0, index1));
+        holder.tv2.setText(temp.substring(index1+1, temp.length()));
+
         return convertView;
     }
 }
