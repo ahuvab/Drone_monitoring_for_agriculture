@@ -56,8 +56,13 @@
             android:name=".Activities.CurrentMissionActivity"
             android:label="@string/title_activity_current_mission" >
         </activity>
-        <activity android:name=".Activities.ShowFieldsActivity"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".Activities.ShowFieldsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".Activities.EditFieldsActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activities.ShowFieldsActivity">
         </activity>
     </application>
 

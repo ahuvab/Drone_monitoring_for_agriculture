@@ -7,7 +7,7 @@
     <string name="password">Password</string>
     <string name="confirm_password">confirm Password</string>
     <string name="station_id">Station id</string>
-
+    <string name="field_name">fieldName</string>
     <string name="fill_field">Please fill the field</string>
     <string name="error_login">Incorrect user-name or password.
                                Please try again </string>
@@ -39,4 +39,8 @@
     <string name="field_name_has_exist">Field namehas exist. Please enter a unique name </string>
     <string name="add_more_fields">Add fields </string>
     <string name="go_to_scan">Move to scanning </string>
+    <string name="not_chosen_field">The field has not been chosen.</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

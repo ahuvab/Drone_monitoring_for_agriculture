@@ -95,4 +95,38 @@ public class DataAccess {
     public LatLng getHomePoint(){
         return new LatLng(32.574511, 35.264361);
     }
+
+    public void updateFieldName(String oldName, String newName){
+        localDB.updateFieldName(oldName,newName);
+        //TODO: update in server
+    }
+
+    public void setPath(String whichPath,String name,ArrayList<LatLng> path){
+        ArrayList<String> lat=new ArrayList();     //split each Arraylist <LatLng to 2 Array- latitude and longtitude
+        ArrayList<String> lon=new ArrayList();
+
+        for(int i=0; i<path.size(); i++){
+            lat.add(Double.toString(path.get(i).latitude));
+            lon.add(Double.toString(path.get(i).longitude));
+        }
+
+        String frameArrayLat = convertArrayListToString(lat);     //convert each arraylist to string
+        String frameArrayLon = convertArrayListToString(lon);
+
+        if(whichPath.equals("frame")) {
+            localDB.setFramePath(name, frameArrayLat, frameArrayLon);
+
+        }
+        else{                 //full path
+            localDB.setDronePath(name, frameArrayLat,frameArrayLon);
+            //TODO: set in server
+        }
+    }
+
+    public void setFieldDistance(String name, float distance){
+        localDB.setFieldDistance(name, distance);
+    }
+
+
+
 }
