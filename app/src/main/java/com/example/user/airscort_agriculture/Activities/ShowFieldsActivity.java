@@ -6,22 +6,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.user.airscort_agriculture.DataAccess;
+import com.example.user.airscort_agriculture.DB.DataAccess;
 import com.example.user.airscort_agriculture.DronePath;
 import com.example.user.airscort_agriculture.MapFragment;
 import com.example.user.airscort_agriculture.MapInterface;
 import com.example.user.airscort_agriculture.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -59,6 +54,10 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         fieldsName=dataAccess.getNamesFields();
         mode = getString(R.string.show_option);
         dronePath=new DronePath(map.getMap());
+        ArrayList<String> names=dataAccess.getNamesFields();        //if there is a fields go to home page
+        if (names.size() < 1) {
+            Toast.makeText(this, getString(R.string.no_fields), Toast.LENGTH_LONG).show();
+        }
     }
 
     //overflow
@@ -83,8 +82,14 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
                 //TODO: edit fields
                 break;
             case R.id.scan:
-                Intent intent3 = new Intent(this, ChooseFieldsToScanActivity.class);
-                startActivity(intent3);
+                ArrayList<String> names=dataAccess.getNamesFields();
+                if (names.size() > 0) {
+                    Intent intent3 = new Intent(this, ChooseFieldsToScanActivity.class);
+                    startActivity(intent3);
+                }
+                else {
+                    Toast.makeText(ShowFieldsActivity.this, getString(R.string.not_defined_fields), Toast.LENGTH_LONG).show();
+                }
                 break;
 
         }
@@ -93,7 +98,7 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
 
     private void showAlertForEdit(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("press on the field you want to edit")
+        builder.setMessage("tap on the field you want to edit")
                 .setCancelable(false)
                 .setIcon(R.drawable.ic_info)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {

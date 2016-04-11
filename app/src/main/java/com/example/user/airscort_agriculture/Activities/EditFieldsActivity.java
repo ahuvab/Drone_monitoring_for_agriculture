@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.airscort_agriculture.DataAccess;
+import com.example.user.airscort_agriculture.DB.DataAccess;
 import com.example.user.airscort_agriculture.DronePath;
 import com.example.user.airscort_agriculture.MapFragment;
 import com.example.user.airscort_agriculture.MapInterface;
@@ -49,7 +48,7 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
             fieldName=bundle.getString(getString(R.string.field_name));
         }
         actionBar = getSupportActionBar();
-        actionBar.setTitle("Edit "+ fieldName+" field");     // set title for activity
+        actionBar.setTitle("Edit " + fieldName + " field");     // set title for activity
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -65,7 +64,6 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         homePoint = dataAccess.getHomePoint();
         mode=getString(R.string.edit_option);
         dronePath=new DronePath(map.getMap());
-        Log.e("ahuva", dataAccess.getDistance(fieldName)+"");
     }
 
     public LatLng findCenterField(){
@@ -105,9 +103,10 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         dataAccess.setPath("frame", fieldName, pathFrame);
         dataAccess.setPath("fullPath", fieldName, fullPath);
         float distance=map.fieldDistance(fullPath);
-        dataAccess.setFieldDistance(fieldName,distance);
-        Log.e("ahuva", dataAccess.getDistance(fieldName) + "");
+        dataAccess.setFieldDistance(fieldName, distance);
         Toast.makeText(EditFieldsActivity.this, "Changes saved ", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ShowFieldsActivity.class);
+        startActivity(intent);
     }
 
     private void alertForDelete(){

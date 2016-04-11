@@ -87,6 +87,7 @@
         android:layout_width="400dp"
         android:layout_height="40dp"
         android:id="@+id/stationId"
+        android:inputType="phone"
         android:layout_below="@+id/editConPasswordReg"
         android:layout_marginTop="10dp"
         android:hint="@string/station_id"
