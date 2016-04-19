@@ -12,11 +12,11 @@
     <string name="error_login">Incorrect user-name or password.
                                Please try again </string>
     <string name="error_register">This email or password is incorrect </string>
-    <string name="can_not_register">Sorry, the register did not succees. please try again later </string>
-    <string name="min_user_name">User name should be minimum 5 characters </string>
-    <string name="email_validate">The email is invalid</string>
-    <string name="password_not_confirm">The password is not match</string>
-    <string name="password_length">The password should be at least 6 characters</string>
+    <string name="can_not_register">Sorry, the registeration did not succeed. please try again later </string>
+    <string name="min_user_name">User name should be a minimum of 5 characters </string>
+    <string name="email_validate">The email you provided is invalid</string>
+    <string name="password_not_confirm">The passwords you provided do not match</string>
+    <string name="password_length">The password should be a minimum of 6 characters</string>
     <string name="profile_update">Your profile has been successfully updated</string>
     <string name="no_chose">No fields selected</string>
     <string name="title_activity_current_mission">Map</string>
@@ -29,27 +29,31 @@
     <string name="undo_option">Undo</string>
     <string name="edit_option">Edit</string>
     <string name="show_option">Show</string>
-    <string name="define_close_area">You have to define close area</string>
-    <string name="field_too_big">the field is too big./n please split it to several parts</string>
-    <string name="chosen_fields">chosen fields</string>
+    <string name="define_close_area">You have to define an inclosed area</string>
+    <string name="field_too_big">The field is too large. please divide it into several sections</string>
+    <string name="chosen_fields">Chosen fields</string>
     <string name="show_all_fields">Show fields</string>
     <string name="edit_fields">Edit fields</string>
-    <string name="name_for_field">You have to enter name for the field</string>
-    <string name="not_defined_fields">not defined fields</string>
-    <string name="field_name_has_exist">Field namehas exist. Please enter a unique name </string>
+    <string name="name_for_field">Please enter a name for the field</string>
+    <string name="not_defined_fields">Not defined fields</string>
+    <string name="field_name_has_exist">Field name already exist. Please enter a new name </string>
     <string name="add_more_fields">Add fields </string>
-    <string name="go_to_scan">Move to scanning </string>
-    <string name="not_chosen_field">The field has not been chosen.</string>
-    <string name="user_details">user details</string>
+    <string name="go_to_scan">Scan </string>
+    <string name="not_chosen_field">The field has not been selected.</string>
+    <string name="user_details">User details</string>
     <string name="no_fields">There are no fields</string>
     <string name="delete_history">Are you sure you want to delete the history?</string>
-    <string name="busy_drone">The drone is already scanning.
-                              Please wait for the end of the previous scan</string>
+    <string name="busy_drone">The drone is currently scanning.
+                              Please wait until the scan is completed</string>
     <string name="latitude">latitude</string>
     <string name="longtitude">longtitude</string>
-    <string name="no_history">no history</string>
-    <string name="no_current_scanning">no current scanning</string>
-
+    <string name="no_history">No history</string>
+    <string name="no_current_scanning">No current scanning is detected</string>
+    <string name="select_resolution">Please select resolution</string>
+    <string name="tap_field">Tap on the field you want to edit</string>
+    <string name="confiem_delete_scanning">Are you sure you want to stop scanning?</string>
+    <string name="stop_scanning">stop scanning?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

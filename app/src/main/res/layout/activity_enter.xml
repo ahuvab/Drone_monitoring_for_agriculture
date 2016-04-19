@@ -49,11 +49,11 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="140dp"
+        android:layout_width="170dp"
         android:layout_height="40dp"
         android:id="@+id/forgetPass"
         android:layout_below="@+id/buttonLog"
-        android:text="forget password?"
+        android:text="forgot your password?"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:textStyle="italic"

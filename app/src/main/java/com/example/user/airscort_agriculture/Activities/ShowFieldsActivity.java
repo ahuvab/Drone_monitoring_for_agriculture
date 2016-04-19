@@ -2,6 +2,7 @@ package com.example.user.airscort_agriculture.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,12 +26,12 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
 
     private MapFragment map;
     private FrameLayout frameLayout;
-    private LatLng homePoint;
+    private LatLng homePoint;                //home station
     private ArrayList<LatLng> pathFrame;
-    private ArrayList<LatLng> fullPath;
-    private ArrayList<String> fieldsName;
+//    private ArrayList<LatLng> fullPath;
+    private ArrayList<String> fieldsName;    //user's fields
     private DataAccess dataAccess;
-    private String mode;
+    private String mode;                    //mode in editor- show
     private DronePath dronePath;
     private ActionBar actionBar;
 
@@ -41,7 +42,7 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.show_all_fields));     // set title for activity
 
-        frameLayout = (FrameLayout) findViewById(R.id.mapFrameLayout);
+        frameLayout = (FrameLayout) findViewById(R.id.mapFrameLayout);      //map fragment
         map = new MapFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -53,9 +54,9 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         homePoint = dataAccess.getHomePoint();
         fieldsName=dataAccess.getNamesFields();
         mode = getString(R.string.show_option);
-        dronePath=new DronePath(map.getMap());
-        ArrayList<String> names=dataAccess.getNamesFields();        //if there is a fields go to home page
-        if (names.size() < 1) {
+        dronePath=new DronePath();
+
+        if (fieldsName.size() < 1) {                                 //if there is a fields, go to home page
             Toast.makeText(this, getString(R.string.no_fields), Toast.LENGTH_LONG).show();
         }
     }
@@ -77,9 +78,7 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
                 break;
             case R.id.edit:
                 mode=getString(R.string.edit_option);
-                showAlertForEdit();
-
-                //TODO: edit fields
+                showAlertForEdit();            //explain how choose field to edit
                 break;
             case R.id.scan:
                 ArrayList<String> names=dataAccess.getNamesFields();
@@ -98,7 +97,7 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
 
     private void showAlertForEdit(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("tap on the field you want to edit")
+        builder.setMessage(getString(R.string.tap_field))
                 .setCancelable(false)
                 .setIcon(R.drawable.ic_info)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -110,6 +109,7 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         alert.show();
     }
 
+    //check the location click
     public String checkChosenField(LatLng position){
         String field="";
         for(int i=0; i<fieldsName.size(); i++){
@@ -126,9 +126,9 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         map.addHomeMarker(homePoint);
         for(int i=0; i<fieldsName.size(); i++){
             pathFrame=dataAccess.getFramePath(fieldsName.get(i));
-            fullPath = dataAccess.getDronePath(fieldsName.get(i));
-            map.drawPolygon(pathFrame);
-            map.drawDronePath(fullPath);
+//            fullPath = dataAccess.getDronePath(fieldsName.get(i));
+            map.drawPolygon(pathFrame, Color.GREEN);
+//            map.drawDronePath(fullPath);
         }
     }
 
@@ -158,8 +158,8 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         return homePoint;
     }
 
+    //if click on map- check if field has been chosen
     public void chooseFieldToScan(LatLng position){
-
         String field=checkChosenField(position);   // check the position
         if(!field.equals("")) {
             Intent intent=new Intent(this, EditFieldsActivity.class);

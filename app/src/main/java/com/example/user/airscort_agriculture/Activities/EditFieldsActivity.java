@@ -2,6 +2,7 @@ package com.example.user.airscort_agriculture.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,11 +64,11 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         dataAccess = new DataAccess(this);
         homePoint = dataAccess.getHomePoint();
         mode=getString(R.string.edit_option);
-        dronePath=new DronePath(map.getMap());
+        dronePath=new DronePath();
     }
 
     public LatLng findCenterField(){
-        dronePath.finfMinAndMaxPoint(pathFrame);
+        dronePath.findfMinAndMaxPoint(pathFrame);
         double lat=(dronePath.getminLat()+dronePath.getmaxLat())/2;
         double lng=(dronePath.getminLng()+dronePath.getmaxLng())/2;
         return new LatLng(lat,lng);
@@ -201,9 +202,9 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
 
     public void finishCreateMap(){
         pathFrame=dataAccess.getFramePath(fieldName);
-        fullPath = dataAccess.getDronePath(fieldName);
-        map.drawPolygonWithMarker(pathFrame);
-        map.drawDronePath(fullPath);
+//        fullPath = dataAccess.getDronePath(fieldName);
+        map.drawPolygonWithMarker(pathFrame, Color.GREEN);
+//        map.drawDronePath(fullPath);
 
         LatLng targetPos=findCenterField();
         map.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(targetPos, 15));

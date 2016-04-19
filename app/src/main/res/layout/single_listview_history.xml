@@ -11,15 +11,17 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
+        android:text="ahuva"
         android:layout_gravity="left"
         android:inputType="date"
         android:layout_marginLeft="10dp"
         android:id="@+id/date" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17sp"
+        android:text="ahuva"
         android:textColor="@color/dark_green"
         android:layout_alignParentLeft="true"
         android:layout_gravity="left"

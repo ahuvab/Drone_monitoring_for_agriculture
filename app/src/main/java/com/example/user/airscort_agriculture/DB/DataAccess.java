@@ -227,9 +227,9 @@ public class DataAccess {
         return sharedPreferences.getString(context.getString(R.string.password), "");
     }
 
-    public void addScanning( String date,ArrayList<String> fields){
+    public void addScanning( String date,ArrayList<String> fields, String resolution, int high){
         String str=convertArrayListToString(fields);
-        localDB.addScanning(str, date);
+        localDB.addScanning(str, date, resolution,high);
         //TODO: send scanning to server
     }
 
@@ -244,6 +244,14 @@ public class DataAccess {
 
     public String getDateFromScanning(){
         return localDB.getDateFromScanning();
+    }
+
+    public String getResolutionFromScanning(){
+        return localDB.getResolutionFromScanning();
+    }
+
+    public int getHighFromScanning(){
+        return localDB.getHighFromScanning();
     }
 
 }
