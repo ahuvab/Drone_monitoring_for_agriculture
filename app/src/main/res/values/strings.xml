@@ -29,6 +29,8 @@
     <string name="undo_option">Undo</string>
     <string name="edit_option">Edit</string>
     <string name="show_option">Show</string>
+    <string name="frame_path">frame</string>
+    <string name="full_path">full</string>
     <string name="define_close_area">You have to define an inclosed area</string>
     <string name="field_too_big">The field is too large. please divide it into several sections</string>
     <string name="chosen_fields">Chosen fields</string>

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,7 +53,8 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         actionBar.setTitle("Edit " + fieldName + " field");     // set title for activity
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
+        dataAccess = new DataAccess(this);
+        dronePath=new DronePath();
         frameLayout = (FrameLayout) findViewById(R.id.mapFrameLayout);
         map = new MapFragment();
         getSupportFragmentManager()
@@ -61,10 +63,9 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
                 .commit();
         map.setMapInterface(this);
 
-        dataAccess = new DataAccess(this);
         homePoint = dataAccess.getHomePoint();
         mode=getString(R.string.edit_option);
-        dronePath=new DronePath();
+
     }
 
     public LatLng findCenterField(){
@@ -101,8 +102,10 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
     }
 
     private void saveChanges(){
-        dataAccess.setPath("frame", fieldName, pathFrame);
-        dataAccess.setPath("fullPath", fieldName, fullPath);
+        pathFrame=getPathFrame();
+        fullPath=getFullDronePath();
+        dataAccess.setPath(getString(R.string.field_name), fieldName, pathFrame);
+        dataAccess.setPath(getString(R.string.full_path), fieldName, fullPath);
         float distance=map.fieldDistance(fullPath);
         dataAccess.setFieldDistance(fieldName, distance);
         Toast.makeText(EditFieldsActivity.this, "Changes saved ", Toast.LENGTH_LONG).show();

@@ -125,7 +125,7 @@ public class DataAccess {
         String frameArrayLat = convertArrayListToString(lat);     //convert each arraylist to string
         String frameArrayLon = convertArrayListToString(lon);
 
-        if (whichPath.equals("frame")) {
+        if (whichPath.equals(context.getString(R.string.field_name))) {
             localDB.setFramePath(name, frameArrayLat, frameArrayLon);
 
         } else {                 //full path
