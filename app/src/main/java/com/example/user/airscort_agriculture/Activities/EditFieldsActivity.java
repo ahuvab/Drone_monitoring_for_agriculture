@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +26,9 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+/*
+this activity allowing to user to edit exist field: change field area, change field name or delete field.
+ */
 public class EditFieldsActivity extends AppCompatActivity implements MapInterface{
 
     private MapFragment map;
@@ -39,6 +41,7 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
     private ArrayList<LatLng> fullPath;
     private DronePath dronePath;
     private ActionBar actionBar;
+    private final int MAX_INPUT_LENGTH=25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +49,14 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         setContentView(R.layout.activity_edit_fields);
 
         Bundle bundle=getIntent().getExtras();
-        if(bundle!=null){
+        if(bundle!=null){                                             //get field for edit
             fieldName=bundle.getString(getString(R.string.field_name));
         }
         actionBar = getSupportActionBar();
         actionBar.setTitle("Edit " + fieldName + " field");     // set title for activity
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         dataAccess = new DataAccess(this);
         dronePath=new DronePath();
         frameLayout = (FrameLayout) findViewById(R.id.mapFrameLayout);
@@ -64,18 +68,10 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         map.setMapInterface(this);
 
         homePoint = dataAccess.getHomePoint();
-        mode=getString(R.string.edit_option);
-
+        mode=getString(R.string.edit_option);             //edit mode
     }
 
-    public LatLng findCenterField(){
-        dronePath.findfMinAndMaxPoint(pathFrame);
-        double lat=(dronePath.getminLat()+dronePath.getmaxLat())/2;
-        double lng=(dronePath.getminLng()+dronePath.getmaxLng())/2;
-        return new LatLng(lat,lng);
-    }
-
-    //overflow
+    //edit options-overflow
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -95,8 +91,6 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
             case R.id.change:           //change field name
                 dialogForChangeName();
                 break;
-
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -104,15 +98,24 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
     private void saveChanges(){
         pathFrame=getPathFrame();
         fullPath=getFullDronePath();
-        dataAccess.setPath(getString(R.string.field_name), fieldName, pathFrame);
+        dataAccess.setPath(getString(R.string.field_name), fieldName, pathFrame);     //save changes in DB
         dataAccess.setPath(getString(R.string.full_path), fieldName, fullPath);
         float distance=map.fieldDistance(fullPath);
-        dataAccess.setFieldDistance(fieldName, distance);
+        dataAccess.setFieldDistance(fieldName, distance);                              //update the field's distance
         Toast.makeText(EditFieldsActivity.this, "Changes saved ", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, ShowFieldsActivity.class);
         startActivity(intent);
     }
 
+    /* retrun the center of the field */
+    public LatLng findCenterField(){
+        dronePath.findfMinAndMaxPoint(pathFrame);
+        double lat=(dronePath.getminLat()+dronePath.getmaxLat())/2;
+        double lng=(dronePath.getminLng()+dronePath.getmaxLng())/2;
+        return new LatLng(lat,lng);
+    }
+
+    /* dialog for confirm the deleting field */
     private void alertForDelete(){
         new android.app.AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -121,7 +124,7 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dataAccess.deleteField(fieldName);
+                        dataAccess.deleteField(fieldName);                //delete from DB
                         Intent intent = new Intent(EditFieldsActivity.this, ShowFieldsActivity.class);
                         startActivity(intent);
                     }
@@ -130,7 +133,8 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
                 .show();
     }
 
-    //dialog for field name
+
+   /* dialog for enter new field name */
     public void dialogForChangeName(){
         LayoutInflater layoutInflater = LayoutInflater.from(EditFieldsActivity.this);
         View promptView = layoutInflater.inflate(R.layout.enter_field_name_dialog, null);
@@ -144,22 +148,23 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
                 .setPositiveButton("SAVE", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (!newFieldName.getText().toString().equals("")) {   //check if enter field's name
-                            dialog.dismiss();
+                            if (newFieldName.length() > MAX_INPUT_LENGTH) {       //if the input is too big
+                                Toast.makeText(EditFieldsActivity.this, getString(R.string.long_name), Toast.LENGTH_LONG).show();
+                            } else {
+                                dialog.dismiss();
+                                if (dataAccess.FieldNameHasExist(newFieldName.getText().toString())) {     //if the name has exist
+                                    Toast.makeText(EditFieldsActivity.this, getString(R.string.field_name_has_exist), Toast.LENGTH_LONG).show();
+                                } else {
+                                    dataAccess.updateFieldName(fieldName, newFieldName.getText().toString());
 
-                            if (dataAccess.FieldNameHasExist(newFieldName.getText().toString())) {
-                                Toast.makeText(EditFieldsActivity.this, getString(R.string.field_name_has_exist), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(EditFieldsActivity.this,
+                                            "the field name had change from " + fieldName + " to  " + newFieldName.getText().toString(),
+                                            Toast.LENGTH_LONG).show();
+                                    fieldName = newFieldName.getText().toString();
+                                    actionBar.setTitle("Edit " + fieldName + " field");
+                                }
                             }
-                            else {
-                                dataAccess.updateFieldName(fieldName, newFieldName.getText().toString());
-
-                                Toast.makeText(EditFieldsActivity.this,
-                                        "the field name had change from "+fieldName + " to  "+ newFieldName.getText().toString(),
-                                        Toast.LENGTH_LONG).show();
-                                fieldName=newFieldName.getText().toString();
-                                actionBar.setTitle("Edit "+ fieldName+" field");
-                            }
-                        }
-                        else {
+                        } else {
                             Toast.makeText(EditFieldsActivity.this, getString(R.string.name_for_field), Toast.LENGTH_LONG).show();
                             //TODO: keep dialog open
                         }
@@ -205,13 +210,11 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
 
     public void finishCreateMap(){
         pathFrame=dataAccess.getFramePath(fieldName);
-//        fullPath = dataAccess.getDronePath(fieldName);
-        map.drawPolygonWithMarker(pathFrame, Color.GREEN);
-//        map.drawDronePath(fullPath);
-
-        LatLng targetPos=findCenterField();
+        fullPath = dataAccess.getDronePath(fieldName);
+        map.drawPolygonWithMarker(pathFrame, Color.GREEN);         //draw the edited field on map
+        LatLng targetPos=findCenterField();                        //place field in the center of the map
         map.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(targetPos, 15));
     }
 
-    public void chooseFieldToScan(LatLng position){}
+    public void chooseField(LatLng position){}
 }

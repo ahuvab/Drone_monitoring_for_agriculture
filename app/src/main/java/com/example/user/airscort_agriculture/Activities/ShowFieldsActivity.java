@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,13 +22,15 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+/*
+this activity allows to user to view his fields on the map
+ */
 public class ShowFieldsActivity extends AppCompatActivity implements MapInterface {
 
     private MapFragment map;
     private FrameLayout frameLayout;
     private LatLng homePoint;                //home station
     private ArrayList<LatLng> pathFrame;
-//    private ArrayList<LatLng> fullPath;
     private ArrayList<String> fieldsName;    //user's fields
     private DataAccess dataAccess;
     private String mode;                    //mode in editor- show
@@ -56,10 +57,6 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         fieldsName=dataAccess.getNamesFields();
         mode = getString(R.string.show_option);
         dronePath=new DronePath();
-
-        if (fieldsName.size() < 1) {                                 //if there is a fields, go to home page
-            Toast.makeText(this, getString(R.string.no_fields), Toast.LENGTH_LONG).show();
-        }
     }
 
     //overflow
@@ -73,29 +70,29 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.add:
+            case R.id.add:                                     //add new field
                 Intent intent=new Intent(this, MapActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.edit:
+            case R.id.edit:                                    //edit field
                 mode=getString(R.string.edit_option);
                 showAlertForEdit();            //explain how choose field to edit
                 break;
-            case R.id.scan:
+            case R.id.scan:                                    //go to choose fields to scan
                 ArrayList<String> names=dataAccess.getNamesFields();
                 if (names.size() > 0) {
                     Intent intent3 = new Intent(this, ChooseFieldsToScanActivity.class);
                     startActivity(intent3);
                 }
-                else {
-                    Toast.makeText(ShowFieldsActivity.this, getString(R.string.not_defined_fields), Toast.LENGTH_LONG).show();
+                else {                                          //if there is no fields
+                    Toast.makeText(ShowFieldsActivity.this, getString(R.string.no_fields), Toast.LENGTH_LONG).show();
                 }
                 break;
-
         }
         return super.onOptionsItemSelected(item);
     }
 
+    /* dialog for explanation how to choose field for edit */
     private void showAlertForEdit(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getString(R.string.tap_field))
@@ -110,7 +107,7 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         alert.show();
     }
 
-    //check the location click
+    /* check the location of user's click */
     public String checkChosenField(LatLng position){
         String field="";
         for(int i=0; i<fieldsName.size(); i++){
@@ -127,9 +124,7 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         map.addHomeMarker(homePoint);
         for(int i=0; i<fieldsName.size(); i++){
             pathFrame=dataAccess.getFramePath(fieldsName.get(i));
-//            fullPath = dataAccess.getDronePath(fieldsName.get(i));
             map.drawPolygon(pathFrame, Color.GREEN);
-//            map.drawDronePath(fullPath);
         }
     }
 
@@ -160,10 +155,10 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
     }
 
     //if click on map- check if field has been chosen
-    public void chooseFieldToScan(LatLng position){
-        String field=checkChosenField(position);   // check the position
+    public void chooseField(LatLng position){
+        String field=checkChosenField(position);          // check the position
 
-        if(!field.equals("")) {
+        if(!field.equals("")) {                           //if the click was inside any user's field
             Intent intent=new Intent(this, EditFieldsActivity.class);
             intent.putExtra(getString(R.string.field_name),field);
             startActivity(intent);

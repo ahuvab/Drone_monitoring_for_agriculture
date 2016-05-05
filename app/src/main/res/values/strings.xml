@@ -37,7 +37,6 @@
     <string name="show_all_fields">Show fields</string>
     <string name="edit_fields">Edit fields</string>
     <string name="name_for_field">Please enter a name for the field</string>
-    <string name="not_defined_fields">Not defined fields</string>
     <string name="field_name_has_exist">Field name already exist. Please enter a new name </string>
     <string name="add_more_fields">Add fields </string>
     <string name="go_to_scan">Scan </string>
@@ -45,6 +44,7 @@
     <string name="user_details">User details</string>
     <string name="no_fields">There are no fields</string>
     <string name="delete_history">Are you sure you want to delete the history?</string>
+    <string name="delete_field">Are you sure you want to deletethis field?</string>
     <string name="busy_drone">The drone is currently scanning.
                               Please wait until the scan is completed</string>
     <string name="latitude">latitude</string>
@@ -55,6 +55,7 @@
     <string name="tap_field">Tap on the field you want to edit</string>
     <string name="confiem_delete_scanning">Are you sure you want to stop scanning?</string>
     <string name="stop_scanning">stop scanning?</string>
+    <string name="long_name">the name you entered is too long</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
