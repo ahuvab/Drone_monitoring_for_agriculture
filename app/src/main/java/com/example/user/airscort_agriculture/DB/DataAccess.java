@@ -3,8 +3,8 @@ package com.example.user.airscort_agriculture.DB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
-import com.example.user.airscort_agriculture.DB.LocalDB;
 import com.example.user.airscort_agriculture.R;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -20,13 +20,14 @@ public class DataAccess {
     private Context context;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor spEditor;
-    //TODO: conect to server
+    private ServerConection server;
 
     public DataAccess(Context c) {
         context = c;
         localDB = new LocalDB(c);
         sharedPreferences = c.getSharedPreferences(c.getString(R.string.user_details), c.MODE_PRIVATE);
         spEditor = sharedPreferences.edit();
+        server=new ServerConection(c);
     }
 
     public void addField(String name, ArrayList<LatLng> pathFrame, ArrayList<LatLng> dronePath, float distance) {
@@ -50,6 +51,7 @@ public class DataAccess {
         String droePathArrayLon = convertArrayListToString(lonFullPath);
 
         localDB.addField(name, frameArrayLat, frameArrayLon, droePathArrayLat, droePathArrayLon, distance);
+//        server.addField(getUserId(), name, pathFrame,dronePath,distance );
         //TODO: addField to server
     }
 
@@ -67,6 +69,12 @@ public class DataAccess {
     public ArrayList getNamesFields() {
         return localDB.getNamesFields();
     }
+    public String getFieldNameGivenID(int id){
+        return localDB.getFieldNameGivenID(id);
+    }
+    public int getFieldIdGivenName(String name){
+        return localDB.getFieldIdGivenName(name);
+    }
 
     public float getDistance(String fieldsName) {
         return localDB.getDistance(fieldsName);
@@ -80,18 +88,36 @@ public class DataAccess {
         return localDB.getFramePath(fieldsName);
     }
 
+    /* delete field from local DB and from server */
     public void deleteField(String name) {
-        localDB.deleteField(name);
+        int id=localDB.getFieldIdGivenName(name);
+        if(!server.deleteField(id)){
+            Toast.makeText(context, context.getString(R.string.problem_server), Toast.LENGTH_LONG).show();
+        }
+        else{
+            localDB.deleteField(name);
+        }
         //TODO: delete from server
     }
 
+    /* delete all user's fields from local DB and from server */
     public void deleteAllFields() {
-        localDB.deleteAllFields();
-        //TODO: delete from server
+        ArrayList<Integer> fieldsId=localDB.getIdFields();
+        int i;
+        for(i=0; i<fieldsId.size(); i++){
+            if(!server.deleteField(fieldsId.get(i))){       //If the deletion failed
+                Toast.makeText(context, context.getString(R.string.problem_server), Toast.LENGTH_LONG).show();
+                break;
+            }
+            //TODO: delete each field from server
+        }
+        if(i==fieldsId.size()){                         //else
+            localDB.deleteAllFields();                //delete from local
+        }
     }
 
     //return current location of the drone
-    public LatLng getDroneLoation() {
+    public LatLng getDroneLocation() {
         //TODO:GET THE LOCATION FROM SERVER
         return new LatLng(32.578481, 35.266195);
     }
@@ -101,16 +127,19 @@ public class DataAccess {
     }
 
     public LatLng getHomePoint() {
+
         return new LatLng(32.574511,35.264361);
-//        Float lat= sharedPreferences.getFloat(context.getString(R.string.latitude), 0);
-//        Float lng= sharedPreferences.getFloat(context.getString(R.string.longtitude), 0);
+        //TODO: get drone home from shared preferences
+//        Float lat= sharedPreferences.getFloat(context.getString(R.string.latitude_drone_home), 0);
+//        Float lng= sharedPreferences.getFloat(context.getString(R.string.longtitude_drone_home), 0);
 //        return new LatLng(lat, lng);
 
     }
 
     public void updateFieldName(String oldName, String newName) {
         localDB.updateFieldName(oldName, newName);
-        //TODO: update in server
+        //TODO: update in server- delete field and add new one
+
     }
 
     public void setPath(String whichPath, String name, ArrayList<LatLng> path) {
@@ -130,7 +159,7 @@ public class DataAccess {
 
         } else {                 //full path
             localDB.setDronePath(name, frameArrayLat, frameArrayLon);
-            //TODO: set in server
+            //TODO: set in server-delete field and add new one
         }
     }
 
@@ -171,7 +200,7 @@ public class DataAccess {
 
     public void editUser(String first, String last, String email, String pass) {
         updateSP(first, last, email, pass);
-        //TODO: save in server
+        //TODO: save in server- delete user and add new
     }
 
     public void updateSP(String first, String last, String email, String pass) {
@@ -183,31 +212,32 @@ public class DataAccess {
     }
 
     public void saveHomePointSP(){
-        LatLng homePoint=getHomePointFromServer();
-        spEditor.putFloat(context.getString(R.string.latitude), (float)homePoint.latitude);
-        spEditor.putFloat(context.getString(R.string.longtitude), (float)homePoint.longitude );
+//        LatLng homePoint=getHomePointFromServer();
+        spEditor.putFloat(context.getString(R.string.latitude_drone_home), 0);
+        spEditor.putFloat(context.getString(R.string.longtitude_drone_home), 0);
         spEditor.apply();
     }
 
-    public LatLng getHomePointFromServer(){
-        //TODO: get home point from server
-        return new LatLng(32.574511,35.264361);
-    }
+//    public LatLng getHomePointFromServer(){
+//        //TODO: get home point from server
+//        return new LatLng(32.574511,35.264361);
+//    }
 
-    public boolean existUser(String email, String pass) {
-        //TODO: check in server
-        return true;
-    }
-
+//    public boolean existUser(String email, String pass) {
+//        //TODO: check in server
+//        return true;
+//    }
+//
     public boolean existEmail(String email) {
-        //TODO: check in server
-        return false;
+        return server.ifEmailExist(email);
     }
 
     public String login(String email, String pass) {
         //TODO:the server will return user's details- name + last name + home point
         //updateSP with the details thet get from server
-        saveHomePointSP();
+        // spEditor.putFloat(context.getString(R.string.latitude), (float) homePoint.latitude);      //save drone home in sp
+//        spEditor.putFloat(context.getString(R.string.longtitude), (float) homePoint.longitude);
+//        spEditor.apply();
         return "ahuva";
     }
 
@@ -225,6 +255,10 @@ public class DataAccess {
 
     public String getPassword() {
         return sharedPreferences.getString(context.getString(R.string.password), "");
+    }
+
+    public int getUserId(){
+        return sharedPreferences.getInt(context.getString(R.string.user_id), -1);
     }
 
     public void addScanning( String date,ArrayList<String> fields, String resolution, int high){

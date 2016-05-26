@@ -9,6 +9,10 @@
         android:title="@string/edit_fields"
         />
     <item
+        android:id="@+id/delete"
+        android:title="@string/delete_all_fields"
+        />
+    <item
         android:id="@+id/scan"
         android:title="@string/go_to_scan"
         />

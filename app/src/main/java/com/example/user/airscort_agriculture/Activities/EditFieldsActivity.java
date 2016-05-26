@@ -17,9 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.airscort_agriculture.DB.DataAccess;
-import com.example.user.airscort_agriculture.DronePath;
-import com.example.user.airscort_agriculture.MapFragment;
-import com.example.user.airscort_agriculture.MapInterface;
+import com.example.user.airscort_agriculture.Classes.DronePath;
+import com.example.user.airscort_agriculture.Fragments.MapFragment;
+import com.example.user.airscort_agriculture.Interfaces.MapInterface;
 import com.example.user.airscort_agriculture.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -179,6 +179,9 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         android.app.AlertDialog alert = alertDialogBuilder.create();
         alert.show();
     }
+
+    @Override
+    public void onBackPressed(){}
 
     //implements map interface
     public String getMode(){

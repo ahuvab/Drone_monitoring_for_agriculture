@@ -14,9 +14,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.user.airscort_agriculture.DB.DataAccess;
-import com.example.user.airscort_agriculture.DronePath;
-import com.example.user.airscort_agriculture.MapFragment;
-import com.example.user.airscort_agriculture.MapInterface;
+import com.example.user.airscort_agriculture.Classes.DronePath;
+import com.example.user.airscort_agriculture.Fragments.MapFragment;
+import com.example.user.airscort_agriculture.Interfaces.MapInterface;
 import com.example.user.airscort_agriculture.R;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -78,6 +78,15 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
                 mode=getString(R.string.edit_option);
                 showAlertForEdit();            //explain how choose field to edit
                 break;
+            case R.id.delete:                                 //delete all fields
+                mode=getString(R.string.delete_option);
+                if (dataAccess.getDateFromScanning().equals("")) {        //if there is a current scanning- can't delete fields
+                    alertForDelete();
+                }
+                else{
+                    Toast.makeText(ShowFieldsActivity.this, getString(R.string.cant_delete), Toast.LENGTH_LONG).show();
+                }
+                break;
             case R.id.scan:                                    //go to choose fields to scan
                 ArrayList<String> names=dataAccess.getNamesFields();
                 if (names.size() > 0) {
@@ -90,6 +99,25 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /* dialog for confirm the deleting field */
+    private void alertForDelete(){
+        new android.app.AlertDialog.Builder(ShowFieldsActivity.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("delete fields")
+                .setMessage("Are you sure you want to delete all fields?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dataAccess.deleteAllFields();
+                        Intent intent = new Intent(ShowFieldsActivity.this, MapActivity.class);
+                        Toast.makeText(ShowFieldsActivity.this, "You have to define fields", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     /* dialog for explanation how to choose field for edit */
@@ -118,6 +146,9 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         }
         return field;
     }
+
+    @Override
+    public void onBackPressed(){}
 
     //implements map interface
     public void finishCreateMap(){
@@ -159,9 +190,19 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
         String field=checkChosenField(position);          // check the position
 
         if(!field.equals("")) {                           //if the click was inside any user's field
-            Intent intent=new Intent(this, EditFieldsActivity.class);
-            intent.putExtra(getString(R.string.field_name),field);
-            startActivity(intent);
+            ArrayList<String> arr=dataAccess.getFieldsFromScanning();
+            int i=0;
+            for(; i<arr.size(); i++){
+                if(arr.get(i).equals(field)){              //if the field for edit is scanning now
+                    Toast.makeText(ShowFieldsActivity.this, getString(R.string.cant_edit), Toast.LENGTH_LONG).show();
+                    break;
+                }
+            }
+            if(i==arr.size()){                             //if the field is not scanning now-move to edit
+                Intent intent=new Intent(this, EditFieldsActivity.class);
+                intent.putExtra(getString(R.string.field_name),field);
+                startActivity(intent);
+            }
         }
         else{
             Toast.makeText(ShowFieldsActivity.this, getString(R.string.not_chosen_field), Toast.LENGTH_LONG).show();
