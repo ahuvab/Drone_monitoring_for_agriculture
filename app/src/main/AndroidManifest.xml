@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -12,8 +13,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -27,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.HomeActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name=".Activities.MapActivity"
             android:screenOrientation="portrait" >
@@ -35,37 +38,56 @@
         </activity>
         <activity
             android:name=".Activities.ChooseFieldsToScanActivity"
+            android:screenOrientation="portrait"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".Activities.UserProfileActivity"
-            android:parentActivityName=".Activities.ChooseFieldsToScanActivity" >
+            android:parentActivityName=".Activities.HomeActivity" >
         </activity>
         <activity
             android:name=".Activities.EditProfileActivity"
             android:parentActivityName=".Activities.UserProfileActivity" >
         </activity>
-        <activity android:name=".Activities.StartScanningActivity"
-            android:parentActivityName=".Activities.ChooseFieldsToScanActivity">
+        <activity
+            android:name=".Activities.StartScanningActivity"
+            android:parentActivityName=".Activities.HomeActivity" >
         </activity>
         <activity
             android:name=".Activities.ScanningHistoryActivity"
-            android:parentActivityName=".Activities.ChooseFieldsToScanActivity" >
+            android:parentActivityName=".Activities.HomeActivity" >
 >
         </activity>
         <activity
             android:name=".Activities.CurrentMissionActivity"
             android:label="@string/title_activity_current_mission"
-            android:screenOrientation="portrait">
+            android:parentActivityName=".Activities.HomeActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Activities.ShowFieldsActivity"
+            android:parentActivityName=".Activities.HomeActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name=".Activities.EditFieldsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".Activities.ShowFieldsActivity">
+        <activity
+            android:name=".Activities.EditFieldsActivity"
+            android:parentActivityName=".Activities.ShowFieldsActivity"
+            android:screenOrientation="portrait" >
         </activity>
+
+        <service
+            android:name=".Services.MyIntentService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <receiver
+            android:name=".Services.AlarmReciever"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+
+
     </application>
 
 </manifest>

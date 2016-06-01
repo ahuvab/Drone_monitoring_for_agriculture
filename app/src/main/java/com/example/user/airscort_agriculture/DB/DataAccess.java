@@ -51,8 +51,7 @@ public class DataAccess {
         String droePathArrayLon = convertArrayListToString(lonFullPath);
 
         localDB.addField(name, frameArrayLat, frameArrayLon, droePathArrayLat, droePathArrayLon, distance);
-//        server.addField(getUserId(), name, pathFrame,dronePath,distance );
-        //TODO: addField to server
+//        TODO: server.addField(getUserId(), name, pathFrame,dronePath,distance );
     }
 
     public String convertArrayListToString(ArrayList<String> arr) {
@@ -90,30 +89,33 @@ public class DataAccess {
 
     /* delete field from local DB and from server */
     public void deleteField(String name) {
-        int id=localDB.getFieldIdGivenName(name);
-        if(!server.deleteField(id)){
-            Toast.makeText(context, context.getString(R.string.problem_server), Toast.LENGTH_LONG).show();
-        }
-        else{
-            localDB.deleteField(name);
-        }
-        //TODO: delete from server
+        localDB.deleteField(name);
+
+        //TODO:
+//        int id=localDB.getFieldIdGivenName(name);
+//        if(!server.deleteField(id)){
+//            Toast.makeText(context, context.getString(R.string.problem_server), Toast.LENGTH_LONG).show();
+//        }
+//        else{
+//            localDB.deleteField(id);
+//        }
+
     }
 
     /* delete all user's fields from local DB and from server */
     public void deleteAllFields() {
         ArrayList<Integer> fieldsId=localDB.getIdFields();
-        int i;
-        for(i=0; i<fieldsId.size(); i++){
-            if(!server.deleteField(fieldsId.get(i))){       //If the deletion failed
-                Toast.makeText(context, context.getString(R.string.problem_server), Toast.LENGTH_LONG).show();
-                break;
-            }
-            //TODO: delete each field from server
-        }
-        if(i==fieldsId.size()){                         //else
+        //TODO:
+//        int i;
+//        for(i=0; i<fieldsId.size(); i++){
+//            if(!server.deleteField(fieldsId.get(i))){       //If the deletion failed
+//                Toast.makeText(context, context.getString(R.string.problem_server), Toast.LENGTH_LONG).show();
+//                break;
+//            }
+//        }
+//        if(i==fieldsId.size()){                         //else
             localDB.deleteAllFields();                //delete from local
-        }
+//        }
     }
 
     //return current location of the drone
@@ -170,12 +172,13 @@ public class DataAccess {
     public void addHistory(String date, ArrayList<String> fieldsList) {
         String stringList = convertArrayListToString(fieldsList);
         localDB.addHistory(date, stringList);
-        //TODO:add to server
     }
 
     public void deleteHistory(String date, ArrayList<String> fieldsList) {
         String stringList = convertArrayListToString(fieldsList);
-        localDB.deleteHistory(date, stringList);
+        int id=localDB.getMissionId(date,fieldsList.toString());
+        localDB.deleteHistory(date, convertArrayListToString(fieldsList));
+//        localDB.deleteHistory(id);
         //TODO:delete from server
     }
 
@@ -194,8 +197,7 @@ public class DataAccess {
 
     public void addUser(String first, String last, String email, String pass, String stationId) {
         updateSP(first, last, email, pass);
-        saveHomePointSP();
-        //TODO: add user to server
+        //TODO: add user to server and save user_id  & homepoint
     }
 
     public void editUser(String first, String last, String email, String pass) {
@@ -211,34 +213,22 @@ public class DataAccess {
         spEditor.apply();
     }
 
-    public void saveHomePointSP(){
-//        LatLng homePoint=getHomePointFromServer();
-        spEditor.putFloat(context.getString(R.string.latitude_drone_home), 0);
-        spEditor.putFloat(context.getString(R.string.longtitude_drone_home), 0);
-        spEditor.apply();
-    }
-
-//    public LatLng getHomePointFromServer(){
-//        //TODO: get home point from server
-//        return new LatLng(32.574511,35.264361);
+//    public void saveHomePointSP(){
+////        LatLng homePoint=getHomePointFromServer();
+//        spEditor.putFloat(context.getString(R.string.latitude_drone_home), 0);
+//        spEditor.putFloat(context.getString(R.string.longtitude_drone_home), 0);
+//        spEditor.apply();
 //    }
 
-//    public boolean existUser(String email, String pass) {
-//        //TODO: check in server
-//        return true;
-//    }
+
 //
     public boolean existEmail(String email) {
         return server.ifEmailExist(email);
     }
 
-    public String login(String email, String pass) {
-        //TODO:the server will return user's details- name + last name + home point
-        //updateSP with the details thet get from server
-        // spEditor.putFloat(context.getString(R.string.latitude), (float) homePoint.latitude);      //save drone home in sp
-//        spEditor.putFloat(context.getString(R.string.longtitude), (float) homePoint.longitude);
-//        spEditor.apply();
-        return "ahuva";
+    public boolean login(String email, String pass) {
+        //TODO: return server.login(email,pass);
+        return true;
     }
 
     public String getFirstName() {
@@ -261,15 +251,33 @@ public class DataAccess {
         return sharedPreferences.getInt(context.getString(R.string.user_id), -1);
     }
 
+    public int getStationId(){
+        return sharedPreferences.getInt(context.getString(R.string.station_id), -1);
+    }
+
     public void addScanning( String date,ArrayList<String> fields, String resolution, int high){
         String str=convertArrayListToString(fields);
-        localDB.addScanning(str, date, resolution,high);
-        //TODO: send scanning to server
+        localDB.addScanning(str, date, resolution, high);
+        addHistory(date, fields);
+
+        ArrayList<Integer> fieldsId=new ArrayList<>();    //convert fields name list to fields ID LIST
+        for(int i=0; i<fields.size(); i++){
+            fieldsId.add(localDB.getFieldIdGivenName(fields.get(i)));
+        }
+        // TODO: server.startScanning(getUserId(),fieldsId);
     }
 
     public void deleteScanning(){
+        int id=localDB.getMissionId(localDB.getDateFromScanning(), localDB.getFieldsFromScanning().toString());
         localDB.deleteScanning();
-        //TODO: stop scaning in server
+//        localDB.deleteHistory(id);
+//        TODO: server.stopScanning(id);
+    }
+
+    public void finishScanning(){
+        int id=localDB.getMissionId(localDB.getDateFromScanning(),localDB.getFieldsFromScanning().toString());
+        localDB.deleteScanning();
+        //TODO: STOP SCANNING IN SERVER
     }
 
     public ArrayList<String> getFieldsFromScanning(){

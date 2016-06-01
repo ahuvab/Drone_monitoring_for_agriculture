@@ -69,6 +69,7 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
 
         homePoint = dataAccess.getHomePoint();
         mode=getString(R.string.edit_option);             //edit mode
+
     }
 
     //edit options-overflow
@@ -215,8 +216,11 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         pathFrame=dataAccess.getFramePath(fieldName);
         fullPath = dataAccess.getDronePath(fieldName);
         map.drawPolygonWithMarker(pathFrame, Color.GREEN);         //draw the edited field on map
+        map.addHomeMarker(homePoint);
         LatLng targetPos=findCenterField();                        //place field in the center of the map
         map.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(targetPos, 15));
+        //explain how to edit
+        Toast.makeText(EditFieldsActivity.this, getString(R.string.edit_explain), Toast.LENGTH_LONG).show();
     }
 
     public void chooseField(LatLng position){}

@@ -13,7 +13,7 @@
         android:layout_height="200dp"
         android:id="@+id/ImageLogo"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="-80dp"
+        android:layout_marginTop="-85dp"
         android:layout_centerHorizontal="true"/>
 
     <EditText
@@ -34,7 +34,7 @@
         android:ems="7"
         android:layout_below="@+id/editEmailLog"
         android:hint="@string/password"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/border_black"/>
 
@@ -49,43 +49,41 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/forgetPass"
         android:layout_below="@+id/buttonLog"
         android:text="forget password?"
         android:layout_marginTop="3dp"
         android:layout_centerHorizontal="true"
         android:textStyle="italic"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textColor="@color/black"
         />
 
-
-
-    <TextView
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Not a member yet?"
-        android:id="@+id/textViewNot"
-        android:layout_alignParentLeft="true"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/forgetPass"
-        android:layout_marginLeft="155dp"
-        android:layout_marginTop="-3dp"
+        android:layout_marginTop="15dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearance"
+        android:text="Not a member yet?"
+        android:textSize="20sp"
+        android:id="@+id/textViewNot"
         android:textStyle="italic" />
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textViewNot"
+        android:layout_alignTop="@+id/textViewNot"
         android:text="Register"
         android:id="@+id/textViewReg"
-        android:layout_alignTop="@+id/textViewNot"
-        android:layout_marginLeft="-2dp"
-        android:layout_toRightOf="@+id/textViewNot"
-        android:textStyle="bold|italic"
         />
 
-
+    </RelativeLayout>
 </RelativeLayout>

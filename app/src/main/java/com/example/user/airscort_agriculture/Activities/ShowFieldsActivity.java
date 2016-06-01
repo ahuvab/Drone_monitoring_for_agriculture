@@ -41,8 +41,11 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_fields);
+
         actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.show_all_fields));     // set title for activity
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         frameLayout = (FrameLayout) findViewById(R.id.mapFrameLayout);      //map fragment
         map = new MapFragment();
@@ -85,16 +88,6 @@ public class ShowFieldsActivity extends AppCompatActivity implements MapInterfac
                 }
                 else{
                     Toast.makeText(ShowFieldsActivity.this, getString(R.string.cant_delete), Toast.LENGTH_LONG).show();
-                }
-                break;
-            case R.id.scan:                                    //go to choose fields to scan
-                ArrayList<String> names=dataAccess.getNamesFields();
-                if (names.size() > 0) {
-                    Intent intent3 = new Intent(this, ChooseFieldsToScanActivity.class);
-                    startActivity(intent3);
-                }
-                else {                                          //if there is no fields
-                    Toast.makeText(ShowFieldsActivity.this, getString(R.string.no_fields), Toast.LENGTH_LONG).show();
                 }
                 break;
         }
