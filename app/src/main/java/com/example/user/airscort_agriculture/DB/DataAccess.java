@@ -51,7 +51,7 @@ public class DataAccess {
         String droePathArrayLon = convertArrayListToString(lonFullPath);
 
         localDB.addField(name, frameArrayLat, frameArrayLon, droePathArrayLat, droePathArrayLon, distance);
-//        TODO: server.addField(getUserId(), name, pathFrame,dronePath,distance );
+//        TODO: server.addField(getUserId(),name, distance ,pathFrame,dronePath );
     }
 
     public String convertArrayListToString(ArrayList<String> arr) {
@@ -120,7 +120,7 @@ public class DataAccess {
 
     //return current location of the drone
     public LatLng getDroneLocation() {
-        //TODO:GET THE LOCATION FROM SERVER
+//       TODO:  server.getDronrLocation(getUserId());
         return new LatLng(32.578481, 35.266195);
     }
 
