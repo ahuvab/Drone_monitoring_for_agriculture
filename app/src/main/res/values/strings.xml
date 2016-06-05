@@ -11,7 +11,7 @@
     <string name="field_name">fieldName</string>
     <string name="fill_field">Please fill the field</string>
     <string name="fill_fields">Please fill the fields</string>
-    <string name="error_login">Incorrect user-name or password.
+    <string name="error_login">Incorrect email or password.
                                Please try again </string>
     <string name="error_register">This email has exist </string>
     <string name="can_not_register">Sorry, the registeration did not succeed. please try again later </string>

@@ -14,6 +14,7 @@
         android:layout_marginTop="10dp"
         android:textStyle="bold|italic"
         android:text="ahuva"
+        android:textColor="@color/black"
         android:layout_gravity="left"
         android:inputType="date"
         android:layout_marginLeft="10dp"

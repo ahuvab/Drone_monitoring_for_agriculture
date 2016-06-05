@@ -129,13 +129,8 @@ public class DataAccess {
     }
 
     public LatLng getHomePoint() {
-
         return new LatLng(32.574511,35.264361);
-        //TODO: get drone home from shared preferences
-//        Float lat= sharedPreferences.getFloat(context.getString(R.string.latitude_drone_home), 0);
-//        Float lng= sharedPreferences.getFloat(context.getString(R.string.longtitude_drone_home), 0);
-//        return new LatLng(lat, lng);
-
+        //TODO: localDB.getHomePoint(getEmail());
     }
 
     public void updateFieldName(String oldName, String newName) {
@@ -196,47 +191,53 @@ public class DataAccess {
     }
 
     public void addUser(String first, String last, String email, String pass, String stationId) {
-        updateSP(first, last, email, pass);
-        //TODO: add user to server and save user_id  & homepoint
+        localDB.addUser(first,last,email,pass);
+        updateSP(email);
+        //TODO: add user to server and save user_id  & homepoint in local DB- setUserID + setHomePoint
+    }
+
+    public void deleteUser(){
+        localDB.deleteUser();
     }
 
     public void editUser(String first, String last, String email, String pass) {
-        updateSP(first, last, email, pass);
+        localDB.setUser(getEmail(), first,last,email,pass);
+        updateSP(email);
         //TODO: save in server- delete user and add new
     }
 
-    public void updateSP(String first, String last, String email, String pass) {
-        spEditor.putString(context.getString(R.string.f_name), first);                 // save in shared prefernce
-        spEditor.putString(context.getString(R.string.l_name), last);
+    //save user email in shared preferences
+    public void updateSP(String email) {
         spEditor.putString(context.getString(R.string.email), email);
-        spEditor.putString(context.getString(R.string.password), pass);
         spEditor.apply();
     }
 
-//    public void saveHomePointSP(){
-////        LatLng homePoint=getHomePointFromServer();
-//        spEditor.putFloat(context.getString(R.string.latitude_drone_home), 0);
-//        spEditor.putFloat(context.getString(R.string.longtitude_drone_home), 0);
-//        spEditor.apply();
-//    }
 
-
-//
     public boolean existEmail(String email) {
-        return server.ifEmailExist(email);
+        return false;
+        //TODO: return server.ifEmailExist(email);
     }
 
     public boolean login(String email, String pass) {
+        //delete all local DB and get new details from server
+        //TODO: localDB.deleteUser();
+        //TODO: localDB.deleteAllHistory();
+        //TODO:localDB.deleteScanning();
+        //TODO: localDB.deleteAllFields();
         //TODO: return server.login(email,pass);
-        return true;
+
+        if(email.equals(getEmail())&& pass.equals(localDB.getPassword(email))){     //temp
+            return true;
+        }
+        return false;
     }
 
     public String getFirstName() {
-        return sharedPreferences.getString(context.getString(R.string.f_name), "");
+        return localDB.getFName(getEmail());
     }
 
     public String getLastName() {
-        return sharedPreferences.getString(context.getString(R.string.l_name), "");
+        return localDB.getLName(getEmail());
     }
 
     public String getEmail() {
@@ -244,16 +245,13 @@ public class DataAccess {
     }
 
     public String getPassword() {
-        return sharedPreferences.getString(context.getString(R.string.password), "");
+        return localDB.getPassword(getEmail());
     }
 
     public int getUserId(){
-        return sharedPreferences.getInt(context.getString(R.string.user_id), -1);
+        return localDB.getUserId(getEmail());
     }
 
-    public int getStationId(){
-        return sharedPreferences.getInt(context.getString(R.string.station_id), -1);
-    }
 
     public void addScanning( String date,ArrayList<String> fields, String resolution, int high){
         String str=convertArrayListToString(fields);
