@@ -1,25 +1,30 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@color/green">
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.user.airscort_agriculture.Activities.CurrentMissionActivity">
+    >
 
-    <ImageButton
+
+    <FrameLayout
+        android:id="@+id/current_mission_map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="0sp"
-        android:layout_weight="0.8"
-        android:id="@+id/imageButton"
-        android:layout_gravity="center"
-        android:background="#00000000"
-        android:src="@drawable/sign" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|right"
+        android:clickable="true"
+        android:src="@drawable/stophand"
+        app:backgroundTint="@color/green"
+        />
 
 
-   <FrameLayout
-       android:id="@+id/current_mission_map"
-       android:layout_width="match_parent"
-       android:layout_height="0sp"
-       android:layout_weight="9"/>
-
-
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

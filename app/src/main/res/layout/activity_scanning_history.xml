@@ -16,7 +16,7 @@
         android:layout_marginTop="15dp"
         android:text="Scanning History"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="25sp"/>
 

@@ -5,9 +5,9 @@
     android:id="@+id/selected"
     android:oneshot="false"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/drone0" android:duration="50" />
-    <item android:drawable="@drawable/drone1" android:duration="50" />
-    <item android:drawable="@drawable/drone2" android:duration="50" />
-    <item android:drawable="@drawable/drone3" android:duration="50" />
+    <item android:drawable="@drawable/drone0a" android:duration="5"  />
+    <item android:drawable="@drawable/drone1a" android:duration="5" />
+    <item android:drawable="@drawable/drone2a" android:duration="5" />
+    <item android:drawable="@drawable/drone3a" android:duration="5" />
 
 </animation-list>

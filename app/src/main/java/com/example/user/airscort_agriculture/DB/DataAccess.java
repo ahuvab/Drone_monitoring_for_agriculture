@@ -191,7 +191,8 @@ public class DataAccess {
     }
 
     public void addUser(String first, String last, String email, String pass, String stationId) {
-        localDB.addUser(first,last,email,pass);
+        deleteLocalDB();
+        localDB.addUser(first, last,email,pass);
         updateSP(email);
         //TODO: add user to server and save user_id  & homepoint in local DB- setUserID + setHomePoint
     }
@@ -220,10 +221,7 @@ public class DataAccess {
 
     public boolean login(String email, String pass) {
         //delete all local DB and get new details from server
-        //TODO: localDB.deleteUser();
-        //TODO: localDB.deleteAllHistory();
-        //TODO:localDB.deleteScanning();
-        //TODO: localDB.deleteAllFields();
+      //TODO:deleteLocalDB();
         //TODO: return server.login(email,pass);
 
         if(email.equals(getEmail())&& pass.equals(localDB.getPassword(email))){     //temp
@@ -267,15 +265,15 @@ public class DataAccess {
 
     public void deleteScanning(){
         int id=localDB.getMissionId(localDB.getDateFromScanning(), localDB.getFieldsFromScanning().toString());
+        localDB.deleteHistory(localDB.getDateFromScanning(), convertArrayListToString(localDB.getFieldsFromScanning()));
         localDB.deleteScanning();
-//        localDB.deleteHistory(id);
-//        TODO: server.stopScanning(id);
+//      TODO: server.stopScanning(id) ;
     }
 
     public void finishScanning(){
-        int id=localDB.getMissionId(localDB.getDateFromScanning(),localDB.getFieldsFromScanning().toString());
+        int id=localDB.getMissionId(localDB.getDateFromScanning(),convertArrayListToString(localDB.getFieldsFromScanning()));
         localDB.deleteScanning();
-        //TODO: STOP SCANNING IN SERVER
+        //TODO: server.stopScanning(id) ;
     }
 
     public ArrayList<String> getFieldsFromScanning(){
@@ -294,4 +292,10 @@ public class DataAccess {
         return localDB.getHighFromScanning();
     }
 
+    public void deleteLocalDB(){
+        localDB.deleteUser();
+        localDB.deleteAllHistory();
+        localDB.deleteScanning();
+        localDB.deleteAllFields();
+    }
 }

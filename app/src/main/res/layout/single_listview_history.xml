@@ -12,7 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         android:text="ahuva"
         android:textColor="@color/black"
         android:layout_gravity="left"

@@ -1,5 +1,6 @@
 package com.example.user.airscort_agriculture.Activities;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -41,6 +43,7 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
     private ArrayList<LatLng> fullPath;
     private DronePath dronePath;
     private ActionBar actionBar;
+    EditText newFieldName;
     private final int MAX_INPUT_LENGTH=25;
 
     @Override
@@ -143,32 +146,11 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         alertDialogBuilder.setView(promptView);
         TextView textView=(TextView) promptView.findViewById(R.id.title);
         textView.setText("Enter new field's name");
-        final EditText newFieldName = (EditText) promptView.findViewById(R.id.fieldName);
+        newFieldName = (EditText) promptView.findViewById(R.id.fieldName);
         // setup a dialog window
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("SAVE", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        if (!newFieldName.getText().toString().equals("")) {   //check if enter field's name
-                            if (newFieldName.length() > MAX_INPUT_LENGTH) {       //if the input is too big
-                                Toast.makeText(EditFieldsActivity.this, getString(R.string.long_name), Toast.LENGTH_LONG).show();
-                            } else {
-                                dialog.dismiss();
-                                if (dataAccess.FieldNameHasExist(newFieldName.getText().toString())) {     //if the name has exist
-                                    Toast.makeText(EditFieldsActivity.this, getString(R.string.field_name_has_exist), Toast.LENGTH_LONG).show();
-                                } else {
-                                    dataAccess.updateFieldName(fieldName, newFieldName.getText().toString());
-
-                                    Toast.makeText(EditFieldsActivity.this,
-                                            "the field name had change from " + fieldName + " to  " + newFieldName.getText().toString(),
-                                            Toast.LENGTH_LONG).show();
-                                    fieldName = newFieldName.getText().toString();
-                                    actionBar.setTitle("Edit " + fieldName + " field");
-                                }
-                            }
-                        } else {
-                            Toast.makeText(EditFieldsActivity.this, getString(R.string.name_for_field), Toast.LENGTH_LONG).show();
-                            //TODO: keep dialog open
-                        }
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -179,6 +161,38 @@ public class EditFieldsActivity extends AppCompatActivity implements MapInterfac
         // create an alert dialog
         android.app.AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+        Button theButton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        theButton.setOnClickListener(new CustomListener(alert));
+    }
+
+    class CustomListener implements View.OnClickListener {
+        private final Dialog dialog;
+        public CustomListener(Dialog dialog) {
+            this.dialog = dialog;
+        }
+        @Override
+        public void onClick(View v) {
+            if (!newFieldName.getText().toString().equals("")) {   //check if enter field's name
+                if (newFieldName.length() > MAX_INPUT_LENGTH) {       //if the input is too big
+                    Toast.makeText(EditFieldsActivity.this, getString(R.string.long_name), Toast.LENGTH_LONG).show();
+                } else {
+
+                    if (dataAccess.FieldNameHasExist(newFieldName.getText().toString())) {     //if the name has exist
+                        Toast.makeText(EditFieldsActivity.this, getString(R.string.field_name_has_exist), Toast.LENGTH_LONG).show();
+                    } else {
+                        dataAccess.updateFieldName(fieldName, newFieldName.getText().toString());
+                        dialog.dismiss();
+                        Toast.makeText(EditFieldsActivity.this,
+                                "the field name had change from " + fieldName + " to  " + newFieldName.getText().toString(),
+                                Toast.LENGTH_LONG).show();
+                        fieldName = newFieldName.getText().toString();
+                        actionBar.setTitle("Edit " + fieldName + " field");
+                    }
+                }
+            } else {
+                Toast.makeText(EditFieldsActivity.this, getString(R.string.name_for_field), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override

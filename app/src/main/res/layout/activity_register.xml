@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -15,31 +15,30 @@
     tools:context="com.example.user.airscort_for_agriculture.RegisterActivity"
     android:background="@drawable/fade_bg">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_marginTop="75dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="0.7"
+            android:layout_height="50dp"
             android:ems="10"
             android:id="@+id/editFNameReg"
             android:layout_below="@+id/ImageLogo"
-            android:layout_marginTop="45dp"
             android:hint="@string/f_name"
             android:inputType="text"
             android:textColor="#000000"
             android:background="@drawable/border_black"
-            android:layout_gravity="center_horizontal"/>
+            />
 
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="0.7"
+            android:layout_height="50dp"
             android:id="@+id/editLNameReg"
             android:layout_below="@+id/editFNameReg"
             android:layout_marginTop="10dp"
@@ -47,13 +46,12 @@
             android:inputType="text"
             android:textColor="#000000"
             android:background="@drawable/border_black"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_centerHorizontal="true"/>
 
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="0.8"
+            android:layout_height="50dp"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/editEmailReg"
@@ -62,13 +60,12 @@
             android:hint="@string/email"
             android:textColor="#000000"
             android:background="@drawable/border_black"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_centerHorizontal="true"/>
 
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="0.8"
+            android:layout_height="50dp"
             android:inputType="textPassword"
             android:ems="7"
             android:id="@+id/editPasswordReg"
@@ -77,12 +74,11 @@
             android:hint="@string/password"
             android:textColor="#000000"
             android:background="@drawable/border_black"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_centerHorizontal="true"/>
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="0.8"
+            android:layout_height="50dp"
             android:inputType="textPassword"
             android:ems="7"
             android:id="@+id/editConPasswordReg"
@@ -91,12 +87,11 @@
             android:hint="@string/confirm_password"
             android:textColor="#000000"
             android:background="@drawable/border_black"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_centerHorizontal="true"/>
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="0.8"
+            android:layout_height="50dp"
             android:id="@+id/stationId"
             android:inputType="phone"
             android:layout_below="@+id/editConPasswordReg"
@@ -110,13 +105,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:gravity="center"
             android:id="@+id/registerbutton"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
+            android:layout_below="@+id/stationId"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>
