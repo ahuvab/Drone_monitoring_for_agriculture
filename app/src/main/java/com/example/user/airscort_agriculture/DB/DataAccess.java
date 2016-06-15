@@ -264,6 +264,7 @@ public class DataAccess {
     }
 
     public void deleteScanning(){
+        deleteScanningTime();                //delete scanning time from local db
         int id=localDB.getMissionId(localDB.getDateFromScanning(), localDB.getFieldsFromScanning().toString());
         localDB.deleteHistory(localDB.getDateFromScanning(), convertArrayListToString(localDB.getFieldsFromScanning()));
         localDB.deleteScanning();
@@ -297,5 +298,16 @@ public class DataAccess {
         localDB.deleteAllHistory();
         localDB.deleteScanning();
         localDB.deleteAllFields();
+        localDB.deleteScanningTime();
+    }
+
+    public void addScanningTime(long miliseconds){
+        localDB.addScanningTime(miliseconds);
+    }
+    public void deleteScanningTime(){
+        localDB.deleteScanningTime();
+    }
+    public long getScanningTime(){
+        return localDB.getScanningTime();
     }
 }
