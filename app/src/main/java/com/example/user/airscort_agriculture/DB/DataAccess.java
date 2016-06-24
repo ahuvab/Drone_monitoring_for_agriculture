@@ -3,7 +3,6 @@ package com.example.user.airscort_agriculture.DB;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import com.example.user.airscort_agriculture.R;
 import com.google.android.gms.maps.model.LatLng;
@@ -14,6 +13,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/* The connecting to data base. local data base and server, as nedded */
 public class DataAccess {
 
     private LocalDB localDB;
@@ -30,6 +30,7 @@ public class DataAccess {
         server=new ServerConection(c);
     }
 
+    /* add new field */
     public void addField(String name, ArrayList<LatLng> pathFrame, ArrayList<LatLng> dronePath, float distance) {
         ArrayList<String> latFrame = new ArrayList();     //split each Arraylist <LatLng to 2 Array- latitude and longtitude
         ArrayList<String> lonFrame = new ArrayList();
@@ -65,9 +66,11 @@ public class DataAccess {
         return stringFromArray;
     }
 
+    /* return user's fields name */
     public ArrayList getNamesFields() {
         return localDB.getNamesFields();
     }
+
     public String getFieldNameGivenID(int id){
         return localDB.getFieldNameGivenID(id);
     }
@@ -129,8 +132,11 @@ public class DataAccess {
     }
 
     public LatLng getHomePoint() {
-        return new LatLng(32.574511,35.264361);
-        //TODO: localDB.getHomePoint(getEmail());
+        return localDB.getHomePoint(getEmail());
+    }
+    public LatLng getHomePointFromServer(){
+        //TODO: get from server
+        return new LatLng(32.574511,35.264361);    //temp
     }
 
     public void updateFieldName(String oldName, String newName) {
@@ -173,7 +179,6 @@ public class DataAccess {
         String stringList = convertArrayListToString(fieldsList);
         int id=localDB.getMissionId(date,fieldsList.toString());
         localDB.deleteHistory(date, convertArrayListToString(fieldsList));
-//        localDB.deleteHistory(id);
         //TODO:delete from server
     }
 
@@ -192,8 +197,10 @@ public class DataAccess {
 
     public void addUser(String first, String last, String email, String pass, String stationId) {
         deleteLocalDB();
-        localDB.addUser(first, last,email,pass);
+        localDB.addUser(first, last, email, pass);
+        localDB.setHomePoint(getHomePointFromServer().latitude+"", getHomePointFromServer().longitude+"", email);
         updateSP(email);
+
         //TODO: add user to server and save user_id  & homepoint in local DB- setUserID + setHomePoint
     }
 
@@ -223,7 +230,7 @@ public class DataAccess {
         //delete all local DB and get new details from server
       //TODO:deleteLocalDB();
         //TODO: return server.login(email,pass);
-
+        localDB.setHomePoint(getHomePointFromServer().latitude+"", getHomePointFromServer().longitude+"", email);
         if(email.equals(getEmail())&& pass.equals(localDB.getPassword(email))){     //temp
             return true;
         }
