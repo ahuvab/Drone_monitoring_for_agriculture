@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.example.user.airscort_agriculture.Activities.ChooseFieldsToScanActivity"
+    >
+
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Define fields"
+        android:layout_below="@+id/listView"
+        android:layout_marginTop="140dp"
+        android:id="@+id/defineFields"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+
+</LinearLayout>

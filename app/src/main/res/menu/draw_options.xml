@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/waypoint"
+        android:title="@string/waypoint_optopn"
+        android:icon="@drawable/ic_waypoints"
+        />
+    <item
+        android:id="@+id/continuous"
+        android:icon="@drawable/ic_continu_draw"
+        android:title="@string/continuous_option"
+        />
+
+</menu>
