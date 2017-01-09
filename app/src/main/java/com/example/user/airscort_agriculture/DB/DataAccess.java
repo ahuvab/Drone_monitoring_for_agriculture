@@ -1,6 +1,5 @@
 package com.example.user.airscort_agriculture.DB;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 
